@@ -32,5 +32,8 @@ const FOTOGRAFIJE =[ { file: "foto/1787431388005.jpg", utakmica: "Maksimir", dat
   { file: "foto/PXL_220826_157120741.jpg", utakmica: "Maksimir", datum: "2026-09-20" },
   { file: "foto/PXL_220826_157121185.jpg", utakmica: "Maksimir", datum: "2026-09-20" },
   { file: "foto/wmremove-transformed (5).jpg", utakmica: "Maksimir", datum: "2026-09-20" },
-
+  { file: "foto/ime-prve-slike.jpg", utakmica: "Dinamo - Protivnik", datum: "2026-09-20" },
+  { file: "foto/ime-druge-slike.jpg", utakmica: "Dinamo - Protivnik", datum: "2026-09-20" },
+  { file: "foto/ime-trece-slike.jpg", utakmica: "Dinamo - Protivnik", datum: "2026-09-20" },
+  { file: "foto/ime-cetvrte-slike.jpg", utakmica: "Dinamo - Protivnik", datum: "2026-09-20" },  
 ];
