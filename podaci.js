@@ -21,7 +21,7 @@ const KONTAKT = {
 //  Primjer reda (makni // ispred da proradi):
 //  { file: "foto/hajduk-01.jpg", utakmica: "Dinamo – Hajduk", datum: "2025-09-14", naslov: "Dim prije početka" },
 // =====================================================
-const FOTOGRAFIJE = { file: "foto/1787431388005.jpg", utakmica: "Maksimir", datum: "2026-09-20" },
+const FOTOGRAFIJE =[ { file: "foto/1787431388005.jpg", utakmica: "Maksimir", datum: "2026-09-20" },
   { file: "foto/77283-ezremove.jpg", utakmica: "Maksimir", datum: "2026-09-20" },
   { file: "foto/77286-ezremove.jpg", utakmica: "Maksimir", datum: "2026-09-20" },
   { file: "foto/77326-ezremove.jpg", utakmica: "Maksimir", datum: "2026-09-20" },
