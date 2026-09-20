@@ -181,7 +181,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
   .lb-prev, .lb-next { width: 40px; height: 40px; background: rgba(7, 11, 20, .55); }
   .lb-prev { left: 12px; } .lb-next { right: 12px; }
 }
-}
+
 </style>
 </head>
 <body>
@@ -203,7 +203,11 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
       <p class="eyebrow">Maksimir · Sezona 25/26</p>
       <h1 id="naslov">Dim, boja<br>i devedeset minuta.</h1>
       <p class="lead">Fotografije s tribina Dinama i Bad Blue Boysa — trenuci koji traju sekundu, uhvaćeni da traju dulje.</p>
-      <a class="btn" href="#galerija">Pogledaj galeriju</a>
+      <a class="btn" href="#galerija">Pogledaj galeriju</a><div class="stats" id="stats" hidden>
+        <div class="stat"><b id="stFoto">0</b><span>Fotografija</span></div>
+        <div class="stat"><b id="stUtak">0</b><span>Utakmice</span></div>
+        <div class="stat"><b id="stZadnja">–</b><span>Zadnja objava</span></div>
+      </div>
     </div>
   </section>
 
@@ -331,6 +335,13 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
     el.classList.add("reveal");
     el.style.transitionDelay = Math.min(i % 4, 3) * 60 + "ms";
     io.observe(el);
+  }
+  if (photos.length) {
+    var zp = String(photos[0].datum || "").split("-");
+    document.getElementById("stFoto").textContent = photos.length;
+    document.getElementById("stUtak").textContent = albumOrder.length;
+    document.getElementById("stZadnja").textContent = zp.length === 3 ? parseInt(zp[2], 10) + "." + parseInt(zp[1], 10) + "." : "–";
+    document.getElementById("stats").hidden = false;
   }
 
   function showList() {
