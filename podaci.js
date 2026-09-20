@@ -3,8 +3,8 @@
 //  Ako ostane prazno, dio "Kontakt" se ne prikazuje.
 // =====================================================
 const KONTAKT = {
-  instagram: "",   // npr. "zagreb_w97"  (bez znaka @)
-  email: ""        // npr. "ime@gmail.com"
+  instagram: "zagreb_w97"  (bez znaka @)
+  email: "zdinamo74@gmail.com"
 };
 
 // =====================================================
