@@ -83,6 +83,12 @@ button { font: inherit; color: inherit; }
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 .hero p.lead { margin: 26px 0 0; max-width: 34rem; color: var(--muted); font-size: 1.15rem; font-weight: 300; line-height: 1.7; }
+  .countdown { margin-top: 26px; max-width: 30rem; }
+.cd-boxes { display: flex; border: 1px solid var(--line); border-radius: 6px; background: rgba(13, 20, 36, .7); }
+.cd-box { flex: 1; padding: 14px 4px; text-align: center; }
+.cd-box + .cd-box { border-left: 1px solid var(--line); }
+.cd-box b { display: block; font-size: 2rem; font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.cd-box span { display: block; margin-top: 4px; font-size: .68rem; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
 .btn {
   display: inline-block; margin-top: 30px;
   background: var(--blue-solid); color: #fff;
@@ -209,7 +215,14 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
     <div class="hero-inner">
       <p class="eyebrow">Maksimir · Sezona 25/26</p>
       <h1 id="naslov">Dim, boja<br>i devedeset minuta.</h1>
-      <p class="lead">Fotografije s tribina Dinama i Bad Blue Boysa — trenuci koji traju sekundu, uhvaćeni da traju dulje.</p>
+      <div class="countdown" id="countdown">
+  <div class="cd-boxes">
+    <div class="cd-box"><b id="cdD">0</b><span>Dana</span></div>
+    <div class="cd-box"><b id="cdH">0</b><span>Sati</span></div>
+    <div class="cd-box"><b id="cdM">0</b><span>Min</span></div>
+    <div class="cd-box"><b id="cdS">0</b><span>Sek</span></div>
+  </div>
+      </div>
       <a class="btn" href="#galerija">Pogledaj galeriju</a><div class="stats" id="stats" hidden>
         <div class="stat"><b id="stFoto">0</b><span>Fotografija</span></div>
         <div class="stat"><b id="stUtak">0</b><span>Utakmice</span></div>
@@ -271,6 +284,24 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
 
 <script src="podaci.js"></script>
 <script>
+  var DATUM_UTAKMICE = "2026-09-28T20:00:00";   // ovo jedino mijenjaš
+
+(function () {
+  var target = new Date(DATUM_UTAKMICE).getTime();
+  var box = document.getElementById("countdown");
+
+  function tick() {
+    var left = target - Date.now();
+    if (isNaN(target) || left <= 0) { box.hidden = true; return; }
+    var s = Math.floor(left / 1000);
+    document.getElementById("cdD").textContent = Math.floor(s / 86400);
+    document.getElementById("cdH").textContent = Math.floor(s % 86400 / 3600);
+    document.getElementById("cdM").textContent = Math.floor(s % 3600 / 60);
+    document.getElementById("cdS").textContent = s % 60;
+    setTimeout(tick, 1000);
+  }
+  tick();
+})();
 (function () {
   var kontakt = (typeof KONTAKT !== "undefined") ? KONTAKT : {};
   var raw = (typeof FOTOGRAFIJE !== "undefined") ? FOTOGRAFIJE : [];
