@@ -4,7 +4,8 @@
 // =====================================================
 const KONTAKT = {
   instagram: "zagreb_w97",
-  email: "zdinamo74@gmail.com"
+  email: "zdinamo74@gmail.com",
+  facebook: "https://www.facebook.com/share/g/19Xe3U9K8j",
 };
 
 // =====================================================
