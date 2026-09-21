@@ -434,6 +434,15 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
     em.href = "mailto:" + kontakt.email;
     list.appendChild(em);
   }
+  if (kontakt.facebook) {
+    var fb = document.createElement("a");
+    fb.className = "btn ghost";
+    fb.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>';
+    fb.appendChild(document.createTextNode("Facebook grupa"));
+    fb.href = kontakt.facebook;
+    fb.target = "_blank"; fb.rel = "noopener";
+    list.appendChild(fb);
+  }
   if (list.children.length) {
     document.getElementById("kontakt").hidden = false;
     document.getElementById("navKontakt").hidden = false;
