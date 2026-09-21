@@ -90,6 +90,18 @@ button { font: inherit; color: inherit; }
 .hero .smoke { z-index: -1; }
 .eyebrow { margin: 0 0 14px; color: var(--blue); font-weight: 500; font-size: .95rem; letter-spacing: .22em; text-transform: uppercase; }
 .hero h1 {
+  .hero .dzg-wrap { display: inline-block; }
+.hero h1 {
+  font-size: clamp(6rem, 36vw, 15rem); line-height: .9; letter-spacing: .04em;
+  background: none; -webkit-background-clip: border-box; background-clip: border-box;
+  color: transparent; -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 3px rgba(255, 255, 255, .55);
+}
+.dzg-line { display: flex; height: 3px; margin-top: 14px; }
+.dzg-line i { flex: 1; }
+.dzg-line i:nth-child(1) { background: #2f6fed; }
+.dzg-line i:nth-child(2) { background: #ffffff; }
+.dzg-line i:nth-child(3) { background: #000000; }
   margin: 0; font-weight: 700; text-transform: uppercase;
   font-size: clamp(2.7rem, 12.5vw, 7.5rem); line-height: .98; letter-spacing: -.01em;
   background: linear-gradient(180deg, #f3f6ff 0%, #cbd9fb 100%);
@@ -238,7 +250,10 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
     <div class="smoke b"></div>
     <div class="hero-inner">
       <p class="eyebrow">Bad Blue Boys · Sezona 26/27</p>
-      <h1 id="naslov">Dim, boja<br>i devedeset minuta.</h1>
+      <div class="dzg-wrap">
+  <h1 id="naslov" aria-label="Dinamo Zagreb">DZG</h1>
+  <div class="dzg-line" aria-hidden="true"><i></i><i></i><i></i></div>
+      </div>
       <div class="countdown" id="countdown">
   <div class="cd-boxes">
     <div class="cd-box"><b id="cdD">0</b><span>Dana</span></div>
