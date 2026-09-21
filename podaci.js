@@ -35,5 +35,5 @@ const FOTOGRAFIJE =[ { file: "foto/1787431388005.jpg", utakmica: "Maksimir", dat
   { file: "foto/wmremove-transformed (5) (1).jpg", utakmica: "Dinamo - Lokomotiva", datum: "2026-09-20" },
   { file: "foto/87287-ezremove (1).jpg", utakmica: "Dinamo - Lokomotiva", datum: "2026-09-20" },
   { file: "foto/87265-ezremove.jpg", utakmica: "Dinamo - Lokomotiva", datum: "2026-09-20" },
-  { file: "foto/87279-ezremove.jpg", utakmica: "Dinamo - Lokomotiva", datum: "2026-09-20" },  
+  { file: "foto/87287-ezremove (1) (1).jpg", utakmica: "Dinamo - Lokomotiva", datum: "2026-09-20" },  
 ];
