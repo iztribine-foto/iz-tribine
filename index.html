@@ -98,6 +98,7 @@ button { font: inherit; color: inherit; }
 .btn:hover { background: #4a82f2; }
 .btn.ghost { background: transparent; border: 1px solid var(--line); color: var(--text); margin-top: 0; }
 .btn.ghost:hover { border-color: var(--blue); }
+a.btn.ghost svg { width: 18px; height: 18px; margin-right: 10px; vertical-align: -3px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
 /* ---------- sekcije ---------- */
 section.block { padding: 72px 20px; }
@@ -347,14 +348,18 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
   var list = document.getElementById("contactList");
   if (kontakt.instagram) {
     var ig = document.createElement("a");
-    ig.className = "btn ghost"; ig.textContent = "Instagram @" + kontakt.instagram;
+    ig.className = "btn ghost";
+    ig.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>';
+    ig.appendChild(document.createTextNode("Instagram @" + kontakt.instagram));
     ig.href = "https://instagram.com/" + encodeURIComponent(kontakt.instagram);
     ig.target = "_blank"; ig.rel = "noopener";
     list.appendChild(ig);
   }
   if (kontakt.email) {
     var em = document.createElement("a");
-    em.className = "btn ghost"; em.textContent = kontakt.email;
+    em.className = "btn ghost";
+    em.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>';
+    em.appendChild(document.createTextNode(kontakt.email));
     em.href = "mailto:" + kontakt.email;
     list.appendChild(em);
   }
