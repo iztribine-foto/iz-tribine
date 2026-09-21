@@ -233,7 +233,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
     <div class="cd-box"><b id="cdS">0</b><span>Sek</span></div>
   </div>
       </div>
-      <a class="btn" href="#galerija">Pogledaj galeriju</a><div class="stats" id="stats" hidden>
+      <a class="btn" id="btnGalerija" href="#galerija">Pogledaj galeriju</a><div class="stats" id="stats" hidden>
         <div class="stat"><b id="stFoto">0</b><span>Fotografija</span></div>
         <div class="stat"><b id="stUtak">0</b><span>Utakmice</span></div>
         <div class="stat"><b id="stZadnja">–</b><span>Zadnja objava</span></div>
@@ -369,6 +369,9 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
     if (!albumMap[p.album]) { albumMap[p.album] = { name: p.album, photos: [] }; albumOrder.push(p.album); }
     albumMap[p.album].photos.push(p);
   });
+  // gumb "Pogledaj galeriju" otvara najnoviju galeriju
+  var btnGal = document.getElementById("btnGalerija");
+  if (btnGal && albumOrder.length) btnGal.href = "#album=" + encodeURIComponent(albumOrder[0]);
 
   var albumsEl = document.getElementById("albums"), gridEl = document.getElementById("grid");
   var barEl = document.getElementById("albumBar"), subEl = document.getElementById("galSub"), emptyEl = document.getElementById("empty");
