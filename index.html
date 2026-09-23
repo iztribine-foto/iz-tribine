@@ -274,7 +274,36 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
   .lb-prev, .lb-next { width: 40px; height: 40px; background: rgba(7, 11, 20, .55); }
   .lb-prev { left: 12px; } .lb-next { right: 12px; }
 }
-
+/* ---------- O GRUPI: prozorčić ---------- */
+.site-header nav .nav-btn { background: none; border: 0; padding: 6px 0; cursor: pointer; color: var(--muted); font-size: .98rem; white-space: nowrap; }
+.site-header nav .nav-btn:hover { color: var(--text); }
+.gm { position: fixed; inset: 0; z-index: 60; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgba(3, 6, 12, .82); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.gm-panel { position: relative; width: 100%; max-width: 640px; max-height: 88svh; display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; box-shadow: 0 30px 80px rgba(0, 0, 0, .6); }
+.gm-head { padding: 28px 24px 20px; background: radial-gradient(80% 140% at 0% 0%, #12306a 0%, transparent 70%), #0a1430; border-bottom: 1px solid var(--line); }
+.gm-head h2 { margin: 0; font-size: clamp(2rem, 9vw, 3rem); }
+.gm-head .dzg-line { max-width: 120px; margin-top: 12px; }
+.gm-close { position: absolute; top: 12px; right: 12px; width: 40px; height: 40px; border-radius: 50%; background: rgba(20, 30, 55, .8); border: 1px solid var(--line); cursor: pointer; display: grid; place-items: center; }
+.gm-close:hover { border-color: var(--blue); }
+.gm-close svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; }
+.gm-body { overflow-y: auto; overscroll-behavior: contain; padding: 22px 24px calc(28px + env(safe-area-inset-bottom, 0px)); }
+.gm-intro { margin: 0; color: #b9c3de; font-weight: 300; font-size: 1.05rem; line-height: 1.75; }
+.gm .stats { margin-top: 22px; max-width: none; }
+.tl { list-style: none; margin: 28px 0 8px; padding: 0 0 0 22px; border-left: 1px solid var(--line); }
+.tl li { position: relative; padding: 0 0 26px 18px; }
+.tl li::before { content: ""; position: absolute; left: -28px; top: 6px; width: 11px; height: 11px; border-radius: 50%; background: var(--blue-solid); box-shadow: 0 0 0 4px rgba(47, 111, 237, .22); }
+.tl time { color: var(--blue); font-weight: 500; font-size: .82rem; letter-spacing: .1em; text-transform: uppercase; }
+.tl h3 { margin: 2px 0 6px; font-size: 1.15rem; font-weight: 700; text-transform: uppercase; line-height: 1.2; }
+.tl p { margin: 0; color: #b9c3de; font-weight: 300; }
+@media (prefers-reduced-motion: no-preference) {
+  .gm { animation: gm-fade .25s ease; }
+  .gm-panel { animation: gm-up .3s ease; }
+}
+@keyframes gm-fade { from { opacity: 0; } }
+@keyframes gm-up { from { transform: translateY(18px); opacity: 0; } }
+@media (max-width: 600px) {
+  .gm { align-items: flex-end; padding: 0; }
+  .gm-panel { max-width: none; max-height: 92svh; border-radius: 14px 14px 0 0; }
+}
 </style>
 </head>
 <body>
@@ -284,7 +313,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
   <nav aria-label="Glavna navigacija">
     <a href="#galerija">Galerija</a>
     <a href="#o-meni">O meni</a>
-    <a href="#kontakt" id="navKontakt" hidden>O grupi</a>
+    <button type="button" class="nav-btn" id="navGrupa" aria-haspopup="dialog">O grupi</button>
   </nav>
 </header>
 
@@ -360,7 +389,22 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
     <span>Fotografije se ne smiju koristiti bez dopuštenja autora.</span>
   </div>
 </footer>
-
+<div class="gm" id="gm" hidden role="dialog" aria-modal="true" aria-labelledby="gm-h">
+  <div class="gm-panel">
+    <div class="gm-head">
+      <p class="eyebrow" style="margin:0 0 8px">Bad Blue Boys</p>
+      <h2 id="gm-h">O grupi</h2>
+      <div class="dzg-line" aria-hidden="true"><i></i><i></i><i></i></div>
+      <button type="button" class="gm-close" id="gmClose" aria-label="Zatvori"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="gm-body" id="gmBody" tabindex="0">
+      <p class="gm-intro" id="gmIntro"></p>
+      <div class="stats" id="gmStats"></div>
+      <ol class="tl" id="gmTl"></ol>
+      <a class="btn ghost" id="modalKontakt" href="#kontakt" hidden>Kontakt</a>
+    </div>
+  </div>
+</div>
 <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Pregled fotografije">
   <div class="lb-count" id="lbCount"></div>
   <button class="lb-btn lb-close" id="lbClose" aria-label="Zatvori"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
@@ -453,8 +497,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
   }
   if (list.children.length) {
     document.getElementById("kontakt").hidden = false;
-    document.getElementById("navKontakt").hidden = false;
-  }
+    document.getElementById("modalKontakt").hidden = false;
 
   // ---- albumi ----
   var albumMap = {}, albumOrder = [];
@@ -656,6 +699,50 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
   });
 
   route();
+})();
+</script><script>
+/* ===== POVIJEST GRUPE: ovdje mijenjaš tekst ===== */
+var GRUPA = {
+  osnovana: 1986,
+  uvod: "Bad Blue Boys osnovani su 17. ožujka 1986. u Zagrebu i od prvog dana glas su Dinamove tribine, sjeverne tribine na Maksimiru. Ime je preuzeto iz filma „Bad Boys“ iz 1983., a plava boja je, naravno, Dinamova.",
+  dogadjaji: [
+    { datum: "17. 3. 1986.", naslov: "Osnivanje", tekst: "Na Maksimiru se okuplja skupina navijača koja postaje Bad Blue Boys." },
+    { datum: "13. 5. 1990.", naslov: "Dinamo – Crvena zvezda", tekst: "Utakmica na Maksimiru koja je ostala urezana u povijest kluba i njegovih navijača." },
+    { datum: "1990-e", naslov: "Domovinski rat", tekst: "Velik broj članova priključuje se obrani Hrvatske." },
+    { datum: "1993. – 2000.", naslov: "Croatia Zagreb", tekst: "Klub mijenja ime, a navijači ga ne prihvaćaju. Godine 2000. vraća se ime Dinamo." },
+    { datum: "Danas", naslov: "Koreografije i bakljade", tekst: "Gostovanja diljem Europe, velike koreografije i bakljade, upravo ono što ova stranica bilježi kroz objektiv." }
+  ]
+};
+(function () {
+  var m = document.getElementById("gm"), body = document.getElementById("gmBody");
+  var btn = document.getElementById("navGrupa"), closeBtn = document.getElementById("gmClose");
+  var opener = null;
+  document.getElementById("gmIntro").textContent = GRUPA.uvod;
+  var st = [[GRUPA.osnovana, "Osnovani"], [new Date().getFullYear() - GRUPA.osnovana, "Godina tribine"], ["Sjever", "Maksimir"]];
+  document.getElementById("gmStats").innerHTML = st.map(function (x) { return '<div class="stat"><b>' + x[0] + '</b><span>' + x[1] + '</span></div>'; }).join("");
+  var tl = document.getElementById("gmTl");
+  GRUPA.dogadjaji.forEach(function (d) {
+    var li = document.createElement("li");
+    li.innerHTML = "<time></time><h3></h3><p></p>";
+    li.children[0].textContent = d.datum; li.children[1].textContent = d.naslov; li.children[2].textContent = d.tekst;
+    tl.appendChild(li);
+  });
+  function open() { opener = btn; m.hidden = false; document.body.style.overflow = "hidden"; body.scrollTop = 0; closeBtn.focus(); }
+  function close() { m.hidden = true; document.body.style.overflow = ""; if (opener) opener.focus(); }
+  btn.addEventListener("click", open);
+  closeBtn.addEventListener("click", close);
+  document.getElementById("modalKontakt").addEventListener("click", close);
+  m.addEventListener("click", function (e) { if (e.target === m) close(); });
+  document.addEventListener("keydown", function (e) {
+    if (m.hidden) return;
+    if (e.key === "Escape") close();
+    else if (e.key === "Tab") {
+      var f = [closeBtn, body].concat(document.getElementById("modalKontakt").hidden ? [] : [document.getElementById("modalKontakt")]);
+      var k = f.indexOf(document.activeElement);
+      e.preventDefault();
+      f[(k + (e.shiftKey ? -1 : 1) + f.length) % f.length].focus();
+    }
+  });
 })();
 </script>
   <script data-goatcounter="https://iztribine.goatcounter.com/count"
