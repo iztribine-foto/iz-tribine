@@ -739,7 +739,7 @@ var GRUPA = {
   var btn = document.getElementById("navGrupa"), closeBtn = document.getElementById("gmClose");
   var opener = null;
   document.getElementById("gmIntro").textContent = GRUPA.uvod;
-  var st = [[GRUPA.osnovana, "Osnovani"], [new Date().getFullYear() - GRUPA.osnovana, "Godina tribine"], ["Sjever", "Maksimir"]];
+  var st = [[GRUPA.osnovana, "Osnovani"], [new Date().getFullYear() - GRUPA.osnovana, "Godina postojanja"], ["Sjever", "Maksimir"]];
   document.getElementById("gmStats").innerHTML = st.map(function (x) { return '<div class="stat"><b>' + x[0] + '</b><span>' + x[1] + '</span></div>'; }).join("");
   var tl = document.getElementById("gmTl");
   GRUPA.dogadjaji.forEach(function (d) {
