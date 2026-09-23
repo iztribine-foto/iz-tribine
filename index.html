@@ -795,7 +795,7 @@ var GRUPA = {
   if (search && sub) sub.parentNode.insertBefore(search, sub.nextSibling);
 
   var big = document.getElementById("btnGalerija");
-  if (big) big.setAttribute("href", "#galerija");
+  if (big) big.style.display = "none";
 
   var raw = (typeof FOTOGRAFIJE !== "undefined") ? FOTOGRAFIJE : [];
   var photos = raw.map(function (p) { var q = {}; for (var k in p) q[k] = p[k]; q.album = p.album || p.utakmica || "Ostalo"; return q; })
