@@ -335,11 +335,79 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
 .gm-sec h3 { margin: 0 0 8px; font-size: 1.15rem; font-weight: 700; text-transform: uppercase; line-height: 1.2; }
 .gm-sec p { margin: 0; color: #b9c3de; font-weight: 300; line-height: 1.75; }
 .gm-body .btn { margin-top: 28px; }
+  /* ---------- INTRO: ulaz na tribinu ---------- */
+#intro { position: fixed; inset: 0; z-index: 300; background: #000; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity .8s; cursor: pointer; }
+#intro.out { opacity: 0; pointer-events: none; }
+.i-bd { width: 180px; height: 180px; }
+.i-bd svg { width: 100%; height: 100%; overflow: visible; }
+.i-ring, .i-rip { fill: none; stroke: #4f8ef7; opacity: 0; transform-origin: 100px 100px; }
+.i-ring { stroke-width: 5; }
+.i-rip { stroke-width: 2; }
+.i-d { fill: #f2f5ff; opacity: 0; transform-origin: 100px 100px; font-family: "Oswald", sans-serif; font-weight: 700; }
+.i-logo { margin-top: 22px; padding-left: .5em; font-family: "Oswald", sans-serif; font-size: 1.6rem; font-weight: 600; color: #f2f5ff; letter-spacing: .5em; opacity: 0; }
+.i-logo b { color: #4f8ef7; font-weight: 600; }
+#intro.go .i-ring { animation: iThump 1.8s ease-out forwards; }
+#intro.go .i-rip { animation: iRip 1.3s ease-out; }
+#intro.go .i-rip:nth-of-type(2) { animation-delay: .5s; }
+#intro.go .i-rip:nth-of-type(3) { animation-delay: 1s; }
+#intro.go .i-d { animation: iIn .5s ease-out .2s forwards; }
+#intro.go .i-bd svg { animation: iGlow 2s ease-in-out 1s infinite; }
+#intro.go .i-logo { animation: iLogo 1.2s ease-out 1.6s forwards; }
+@keyframes iThump { 0% { transform: scale(.5); opacity: 0; } 15% { transform: scale(1.1); opacity: 1; } 25% { transform: scale(1); } 45% { transform: scale(1.08); } 55% { transform: scale(1); } 75% { transform: scale(1.1); } 100% { transform: scale(1); opacity: 1; } }
+@keyframes iRip { from { opacity: .7; transform: scale(1); } to { opacity: 0; transform: scale(1.7); } }
+@keyframes iIn { from { opacity: 0; transform: scale(.7); } to { opacity: 1; transform: scale(1); } }
+@keyframes iGlow { 0%, 100% { filter: drop-shadow(0 0 3px rgba(79,142,247,.3)); } 50% { filter: drop-shadow(0 0 10px rgba(79,142,247,.85)); } }
+@keyframes iLogo { to { opacity: 1; letter-spacing: .1em; } }
 </style>
 </head>
 <body>
 
-<header class="site-header">
+
+  <div id="intro" aria-hidden="true">
+  <div class="i-bd">
+    <svg viewBox="0 0 200 200">
+      <circle class="i-rip" cx="100" cy="100" r="70"/>
+      <circle class="i-rip" cx="100" cy="100" r="70"/>
+      <circle class="i-rip" cx="100" cy="100" r="70"/>
+      <circle class="i-ring" cx="100" cy="100" r="70"/>
+      <text class="i-d" id="iD">D</text>
+    </svg>
+  </div>
+  <div class="i-logo">IZ<b>TRIBINE</b></div>
+  </div>
+  <script>
+(function () {
+  var el = document.getElementById("intro");
+  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var seen = false;
+  try { seen = sessionStorage.getItem("introSeen"); } catch (e) {}
+  if (seen || reduce) { el.remove(); return; }
+  try { sessionStorage.setItem("introSeen", "1"); } catch (e) {}
+  document.body.style.overflow = "hidden";
+  var t1;
+  function fin() {
+    clearTimeout(t1);
+    el.classList.add("out");
+    document.body.style.overflow = "";
+    setTimeout(function () { el.remove(); }, 800);
+  }
+  function center() {
+    var t = document.getElementById("iD");
+    var c = document.createElement("canvas").getContext("2d");
+    c.font = '700 100px "Oswald"';
+    var m = c.measureText("D"), L = m.actualBoundingBoxLeft, R = m.actualBoundingBoxRight, A = m.actualBoundingBoxAscent, B = m.actualBoundingBoxDescent;
+    var k = Math.min(60 / (A + B), 80 / (L + R));
+    t.setAttribute("font-size", 100 * k);
+    t.setAttribute("x", 100 - (R - L) * k / 2);
+    t.setAttribute("y", 100 - (B - A) * k / 2);
+  }
+  function start() { center(); void el.offsetWidth; el.classList.add("go"); t1 = setTimeout(fin, 3600); }
+  var ready = (document.fonts && document.fonts.load) ? document.fonts.load('700 100px "Oswald"', "D") : Promise.resolve();
+  Promise.race([ready, new Promise(function (r) { setTimeout(r, 1500); })]).then(start, start);
+  el.addEventListener("click", fin);
+})();
+  </script>
+  <header class="site-header">
   <a class="logo" href="#top" aria-label="Iz Tribine — početak">IZ<b>TRIBINE</b></a>
   <nav aria-label="Glavna navigacija">
     <a href="#galerija">Galerija</a>
