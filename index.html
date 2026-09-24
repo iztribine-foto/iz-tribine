@@ -863,5 +863,23 @@ var GRUPA = {
 })();
 </script>
 <!-- ===== GALERIJA U PROZORČIĆU: KRAJ ===== -->
+<!-- ===== CRTA DO RUBA EKRANA: početak ===== -->
+<script>
+(function () {
+  var l = document.querySelector(".dzg-line");
+  if (!l) return;
+  function fit() {
+    l.style.marginLeft = "0"; l.style.width = "auto";
+    var r = l.getBoundingClientRect();
+    l.style.marginLeft = (-r.left) + "px";
+    l.style.width = document.documentElement.clientWidth + "px";
+  }
+  fit();
+  window.addEventListener("resize", fit);
+  window.addEventListener("load", fit);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+})();
+</script>
+<!-- ===== CRTA DO RUBA EKRANA: KRAJ ===== -->
 </body>
 </html>
