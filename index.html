@@ -132,6 +132,13 @@ button { font: inherit; color: inherit; }
 .cd-box + .cd-box { border-left: 1px solid var(--line); }
 .cd-box b { display: block; font-size: 2rem; font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; }
 .cd-box span { display: block; margin-top: 4px; font-size: .68rem; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+.cd-today { margin: 0 0 12px; color: var(--blue); font-family: "Oswald", sans-serif; font-size: 1.35rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; animation: cdText 1.4s ease-in-out infinite; }
+.countdown.hot .cd-boxes { animation: cdGlow 1s ease-in-out infinite; }
+.countdown.hot .cd-box b { animation: cdPulse 1s ease-in-out infinite; }
+@keyframes cdPulse { 0%,100% { color: #4f8ef7; transform: scale(1); text-shadow: 0 0 0 rgba(79,142,247,0); } 50% { color: #a9c8ff; transform: scale(1.1); text-shadow: 0 0 14px rgba(79,142,247,.9); } }
+@keyframes cdGlow { 0%,100% { filter: drop-shadow(0 0 0 rgba(79,142,247,0)); } 50% { filter: drop-shadow(0 0 12px rgba(79,142,247,.75)); } }
+@keyframes cdText { 0%,100% { text-shadow: 0 0 0 rgba(79,142,247,0); } 50% { text-shadow: 0 0 16px rgba(79,142,247,.9); } }
+@media (prefers-reduced-motion: reduce) { .cd-today, .countdown.hot .cd-boxes, .countdown.hot .cd-box b { animation: none; } }
 .btn {
   display: inline-block; margin-top: 30px;
   background: var(--blue-solid); color: #fff;
@@ -360,6 +367,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
   <div class="dzg-line" aria-hidden="true"><i></i><i></i><i></i></div>
       </div>
       <div class="countdown" id="countdown">
+        <p class="cd-today" id="cdToday" hidden>Utakmica je danas</p>
   <div class="cd-boxes">
     <div class="cd-box"><b id="cdD">0</b><span>Dana</span></div>
     <div class="cd-box"><b id="cdH">0</b><span>Sati</span></div>
@@ -470,6 +478,8 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
     var left = target - Date.now();
     if (isNaN(target) || left <= 0) { box.hidden = true; return; }
     var s = Math.floor(left / 1000);
+    box.classList.toggle("hot", left <= 4 * 3600 * 1000);
+    document.getElementById("cdToday").hidden = new Date().toDateString() !== new Date(target).toDateString();
     document.getElementById("cdD").textContent = Math.floor(s / 86400);
     document.getElementById("cdH").textContent = Math.floor(s % 86400 / 3600);
     document.getElementById("cdM").textContent = Math.floor(s % 3600 / 60);
