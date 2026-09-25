@@ -1,4 +1,4 @@
-const CACHE_NAME = 'iz-tribine-v1';
+const CACHE_NAME = 'iz-tribine-v2';
 const ASSETS = [
   './',
   './index.html',
