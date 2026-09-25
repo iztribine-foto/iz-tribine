@@ -402,7 +402,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
     t.setAttribute("x", 100 - (R - L) * k / 2);
     t.setAttribute("y", 100 - (B - A) * k / 2);
   }
-  function start() { center(); void el.offsetWidth; el.classList.add("go"); t1 = setTimeout(fin, 3600); }
+  function start() { center(); void el.offsetWidth; el.classList.add("go"); t1 = setTimeout(fin, 2600); }
   var ready = (document.fonts && document.fonts.load) ? document.fonts.load('700 100px "Oswald"', "D") : Promise.resolve();
   Promise.race([ready, new Promise(function (r) { setTimeout(r, 1500); })]).then(start, start);
   el.addEventListener("click", fin);
