@@ -962,5 +962,15 @@ var GRUPA = {
 })();
 </script>
 <!-- ===== CRTA DO RUBA EKRANA: KRAJ ===== -->
+  <script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js')
+        .then(reg => console.log('Service Worker registriran!', reg))
+        .catch(err => console.log('Greška kod registracije Service Workera:', err));
+    });
+  }
+  </script>
+  
 </body>
 </html>
