@@ -456,6 +456,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
     <div class="wrap">
       <h2 id="gal-h">Galerija</h2>
       <p class="sub" id="galSub">Odaberi galeriju: svaka je jedna utakmica ili gostovanje.</p>
+      <div class="gallery-toolbar" id="sezonaWrap"></div>
       <div class="albumbar" id="albumBar" hidden>
         <a class="back" href="#galerija">&larr; Sve galerije</a>
         <h3 id="albumTitle"></h3>
@@ -588,6 +589,14 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
     var rijec = (a === 1 && b !== 11) ? "fotografija" : (a >= 2 && a <= 4 && (b < 12 || b > 14)) ? "fotografije" : "fotografija";
     return n + " " + rijec;
   }
+  // sezona iz datuma fotografije: srpanj-lipanj = jedna sezona (npr. "26/27")
+  function sezonaOd(datum) {
+    var d = String(datum || "").split("-");
+    if (d.length !== 3) return null;
+    var y = parseInt(d[0], 10), m = parseInt(d[1], 10);
+    var startY = (m >= 7) ? y : y - 1;
+    return String(startY).slice(2) + "/" + String(startY + 1).slice(2);
+  }
 
   // ---- kontakt ----
   var list = document.getElementById("contactList");
@@ -622,16 +631,56 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
     document.getElementById("modalKontakt").hidden = false;
   }
 
-  // ---- albumi ----
-  var albumMap = {}, albumOrder = [];
+  // ---- sezone ----
+  var sezone = [];
   photos.forEach(function (p) {
-    if (!albumMap[p.album]) { albumMap[p.album] = { name: p.album, photos: [] }; albumOrder.push(p.album); }
-    albumMap[p.album].photos.push(p);
+    var s = sezonaOd(p.datum);
+    if (s && sezone.indexOf(s) === -1) sezone.push(s);
   });
+  sezone.sort().reverse();
+
+  var sezonaWrap = document.getElementById("sezonaWrap"), sezonaSelect = null;
+  if (sezonaWrap && sezone.length > 1) {
+    sezonaSelect = document.createElement("select");
+    sezonaSelect.className = "season-select";
+    sezonaSelect.id = "sezonaSelect";
+    sezonaSelect.setAttribute("aria-label", "Odaberi sezonu");
+    var optSve = document.createElement("option");
+    optSve.value = ""; optSve.textContent = "Sve sezone";
+    sezonaSelect.appendChild(optSve);
+    sezone.forEach(function (s) {
+      var o = document.createElement("option");
+      o.value = s; o.textContent = "Sezona " + s;
+      sezonaSelect.appendChild(o);
+    });
+    sezonaSelect.value = sezone[0];
+    sezonaWrap.appendChild(sezonaSelect);
+  }
+
+  // ---- albumi (grupirano po odabranoj sezoni) ----
+  var albumMap = {}, albumOrder = [];
+  function buildAlbums(sezonaFiltar) {
+    albumMap = {}; albumOrder = [];
+    photos.forEach(function (p) {
+      if (sezonaFiltar && sezonaOd(p.datum) !== sezonaFiltar) return;
+      if (!albumMap[p.album]) { albumMap[p.album] = { name: p.album, photos: [] }; albumOrder.push(p.album); }
+      albumMap[p.album].photos.push(p);
+    });
+  }
+  buildAlbums(sezonaSelect ? sezonaSelect.value : "");
+
+  if (sezonaSelect) {
+    sezonaSelect.addEventListener("change", function () {
+      buildAlbums(this.value);
+      if (location.hash.indexOf("#album=") === 0) location.hash = "#galerija";
+      view = null;
+      route();
+    });
+  }
+
   // gumb "Pogledaj galeriju" otvara najnoviju galeriju
   var btnGal = document.getElementById("btnGalerija");
   if (btnGal && albumOrder.length) btnGal.href = "#album=" + encodeURIComponent(albumOrder[0]);
-
   var albumsEl = document.getElementById("albums"), gridEl = document.getElementById("grid");
   var barEl = document.getElementById("albumBar"), subEl = document.getElementById("galSub"), emptyEl = document.getElementById("empty");
   var current = [];
