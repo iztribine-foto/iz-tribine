@@ -957,7 +957,7 @@ var GRUPA = {
   if (order.length) {
     var sec = document.createElement("section");
     sec.className = "block"; sec.id = "najnovije";
-    sec.innerHTML = '<div class="wrap"><h2>Najnovije</h2><p class="sub">Zadnje objavljene galerije.</p><div class="albums" id="novoAlbums"></div><a class="btn ghost" href="#galerija" style="margin-top:26px">Sve galerije</a></div>';
+    
     g.parentNode.insertBefore(sec, g);
     var box = document.getElementById("novoAlbums");
     order.slice(0, 4).forEach(function (name) {
