@@ -1160,7 +1160,10 @@ if (!s.buduca) {
   }
 
   var scrollTarget = nextEl || track.lastElementChild;
-  if (scrollTarget) setTimeout(function () { scrollTarget.scrollIntoView({ inline: "center", block: "nearest", behavior: "smooth" }); }, 300);
+if (scrollTarget) setTimeout(function () {
+  var scroller = track.parentElement;
+  scroller.scrollLeft = scrollTarget.offsetLeft - (scroller.clientWidth - scrollTarget.offsetWidth) / 2;
+}, 300);
 })();
 </script>
 <!-- ===== TIMELINE SEZONE: KRAJ ===== -->
