@@ -43,6 +43,6 @@ const FOTOGRAFIJE =[ { file: "foto/1787431388005.jpg", utakmica: "DINAMO - HAJDU
   { file: "foto/89660-photo3.avif", utakmica: "MNK Futsal Dinamo", datum: "2026-09-20", izvanSezone: true },
   { file: "foto/89657-photo4.avif", utakmica: "MNK Futsal Dinamo", datum: "2026-09-20", izvanSezone: true },
   { file: "foto/89659-photo5.avif", utakmica: "MNK Futsal Dinamo", datum: "2026-09-20", izvanSezone: true },
-  { file: "foto/futsal6.jpg", utakmica: "MNK Futsal Dinamo", datum: "2026-09-20", izvanSezone: true }
+  { file: "foto/Screenshot_2026-09-27-19-50-24-186_com.android.chrome.avif", utakmica: "MNK Futsal Dinamo", datum: "2026-09-20", izvanSezone: true }
 ];
 
