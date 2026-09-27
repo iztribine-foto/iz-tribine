@@ -1031,8 +1031,15 @@ var GRUPA = {
 #tlSezona .sub{color:var(--muted);margin:0 0 20px}
 .tls-scroll{overflow-x:auto;padding:30px 4px 8px;-webkit-overflow-scrolling:touch}
 .tls-track{position:relative;display:flex;gap:20px;min-width:max-content}
-.tls-track::before{content:"";position:absolute;left:0;right:0;top:11px;height:2px;
-  background:linear-gradient(90deg,var(--blue-solid),var(--line) 90%)}
+.tls-track{position:relative;display:flex;gap:20px;min-width:max-content}
+.tls-track::before{content:"";position:absolute;left:0;right:0;top:10px;height:4px;border-radius:3px;background:var(--line)}
+.tls-fill{position:absolute;left:0;top:10px;height:4px;border-radius:3px;
+  background:linear-gradient(90deg,var(--blue-solid),#7db2ff);
+  box-shadow:0 0 10px 1px rgba(79,142,247,.75), 0 0 2px rgba(255,255,255,.4);
+  transition:width 1.4s cubic-bezier(.3,.9,.3,1)}
+.tls-fill::after{content:"";position:absolute;right:-2px;top:50%;transform:translateY(-50%);
+  width:8px;height:8px;border-radius:50%;background:#cfe1ff;
+  box-shadow:0 0 8px 3px rgba(125,178,255,.9)}
 .tls-stop{position:relative;width:140px;flex:0 0 auto}
 .tls-dot{position:absolute;top:0;left:0;width:22px;height:22px;border-radius:50%;
   background:var(--bg);border:2px solid var(--blue);z-index:1}
@@ -1085,7 +1092,7 @@ var GRUPA = {
   g.parentNode.insertBefore(sec, g);
 
   var track = document.getElementById("tlsTrack");
-  var nextEl = null;
+  var nextEl = null, lastPlayedEl = null, lastPlayedDatum = null;
   stops.forEach(function (s) {
     var status = s.buduca ? "next" : (s.datum && s.datum <= today ? "played" : "upcoming");
     var el = document.createElement("div");
@@ -1104,7 +1111,24 @@ var GRUPA = {
     el.appendChild(dot); el.appendChild(a);
     track.appendChild(el);
     if (status === "next") nextEl = el;
+    if (status === "played") { lastPlayedEl = el; lastPlayedDatum = s.datum; }
   });
+
+  if (lastPlayedEl && nextEl && lastPlayedDatum && typeof DATUM_UTAKMICE !== "undefined") {
+    var fill = document.createElement("div"); fill.className = "tls-fill";
+    track.insertBefore(fill, track.firstChild);
+    var proslaMs = new Date(lastPlayedDatum).getTime();
+    var sljedecaMs = new Date(DATUM_UTAKMICE).getTime();
+    var pct = Math.min(100, Math.max(0, (Date.now() - proslaMs) / (sljedecaMs - proslaMs) * 100));
+    function postaviFill() {
+      var start = lastPlayedEl.offsetLeft + 11;
+      var end = nextEl.offsetLeft + 11;
+      fill.style.left = start + "px"; fill.style.width = "0px";
+      setTimeout(function () { fill.style.width = ((end - start) * pct / 100) + "px"; }, 200);
+    }
+    postaviFill();
+    window.addEventListener("resize", postaviFill);
+  }
 
   var scrollTarget = nextEl || track.lastElementChild;
   if (scrollTarget) setTimeout(function () { scrollTarget.scrollIntoView({ inline: "center", behavior: "smooth" }); }, 300);
