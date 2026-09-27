@@ -39,10 +39,10 @@ const FOTOGRAFIJE =[ { file: "foto/1787431388005.jpg", utakmica: "DINAMO - HAJDU
   { file: "foto/PXL_200926_159057315 (1).jpg", utakmica: "Dinamo - Lokomotiva", datum: "2026-09-20" },   
   { file: "foto/dinamo-lokomotiva.jpg", utakmica: "Dinamo - Lokomotiva", datum: "2026-09-20" },
   { file: "foto/89661-photo.avif", utakmica: "MNK Futsal Dinamo", datum: "2026-09-20", izvanSezone: true },
-  { file: "foto/futsal2.jpg", utakmica: "MNK Futsal Dinamo", datum: "2026-09-20", izvanSezone: true },
-  { file: "foto/futsal3.jpg", utakmica: "MNK Futsal Dinamo", datum: "2026-09-20", izvanSezone: true },
-  { file: "foto/futsal4.jpg", utakmica: "MNK Futsal Dinamo", datum: "2026-09-20", izvanSezone: true },
-  { file: "foto/futsal5.jpg", utakmica: "MNK Futsal Dinamo", datum: "2026-09-20", izvanSezone: true },
+  { file: "foto/89662-photo2.avif", utakmica: "MNK Futsal Dinamo", datum: "2026-09-20", izvanSezone: true },
+  { file: "foto/89660-photo3.avif", utakmica: "MNK Futsal Dinamo", datum: "2026-09-20", izvanSezone: true },
+  { file: "foto/89657-photo4.avif", utakmica: "MNK Futsal Dinamo", datum: "2026-09-20", izvanSezone: true },
+  { file: "foto/89659-photo5.avif", utakmica: "MNK Futsal Dinamo", datum: "2026-09-20", izvanSezone: true },
   { file: "foto/futsal6.jpg", utakmica: "MNK Futsal Dinamo", datum: "2026-09-20", izvanSezone: true }
 ];
 
