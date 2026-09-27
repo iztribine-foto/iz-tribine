@@ -1081,6 +1081,7 @@ var GRUPA = {
 
   var map = {};
   raw.forEach(function (p) {
+    if (p.izvanSezone) return; 
     var album = p.album || p.utakmica || "Ostalo";
     if (!map[album]) map[album] = { name: album, datum: p.datum, first: p, n: 0 };
     if (p.datum && (!map[album].datum || p.datum < map[album].datum)) { map[album].datum = p.datum; map[album].first = p; }
