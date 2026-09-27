@@ -690,6 +690,16 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
       if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
     });
   }, { rootMargin: "0px 0px -8% 0px" }) : null;
+  function countUp(el, target, dur) {
+  var start = performance.now();
+  function tick(now) {
+    var p = Math.min(1, (now - start) / dur);
+    var eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.round(eased * target);
+    if (p < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+  }
   function reveal(el, i) {
     if (!io) return;
     el.classList.add("reveal");
@@ -698,10 +708,15 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
   }
   if (photos.length) {
     var zp = String(photos[0].datum || "").split("-");
-    document.getElementById("stFoto").textContent = photos.length;
-    document.getElementById("stUtak").textContent = albumOrder.length;
+countUp(document.getElementById("stFoto"), photos.length, 1200);
+countUp(document.getElementById("stUtak"), albumOrder.length, 1200);
+    
     document.getElementById("stZadnja").textContent = zp.length === 3 ? parseInt(zp[2], 10) + "." + parseInt(zp[1], 10) + "." : "–";
     document.getElementById("stats").hidden = false;
+    var stat3 = document.getElementById("stZadnja").closest(".stat");
+stat3.classList.add("reveal");
+stat3.style.transitionDelay = "300ms";
+if (io) io.observe(stat3); else stat3.classList.add("in");
   }
 
     // Tražilica + Filtriranje
