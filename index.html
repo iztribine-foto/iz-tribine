@@ -540,6 +540,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
 <script src="podaci.js"></script>
 <script>
   var DATUM_UTAKMICE = "2026-10-10T17:00:00";   // ovo jedino mijenjaš
+  var SLJEDECA_UTAKMICA_NAZIV = "Hajduk - Dinamo";   // naziv sljedeće utakmice za timelinea
 
 (function () {
   var target = new Date(DATUM_UTAKMICE).getTime();
@@ -1023,6 +1024,92 @@ var GRUPA = {
     });
   }
   </script>
-  
+  <!-- ===== TIMELINE SEZONE: početak (za micanje obriši sve do KRAJ) ===== -->
+<style>
+#tlSezona{padding:34px 20px}
+#tlSezona .wrap{max-width:1100px;margin:0 auto}
+#tlSezona .sub{color:var(--muted);margin:0 0 20px}
+.tls-scroll{overflow-x:auto;padding:30px 4px 8px;-webkit-overflow-scrolling:touch}
+.tls-track{position:relative;display:flex;gap:20px;min-width:max-content}
+.tls-track::before{content:"";position:absolute;left:0;right:0;top:11px;height:2px;
+  background:linear-gradient(90deg,var(--blue-solid),var(--line) 90%)}
+.tls-stop{position:relative;width:140px;flex:0 0 auto}
+.tls-dot{position:absolute;top:0;left:0;width:22px;height:22px;border-radius:50%;
+  background:var(--bg);border:2px solid var(--blue);z-index:1}
+.tls-stop.played .tls-dot{background:var(--blue-solid)}
+.tls-stop.next .tls-dot{border-color:var(--muted);animation:tlsPulse 1.6s ease-in-out infinite}
+@keyframes tlsPulse{0%,100%{box-shadow:0 0 0 0 rgba(79,142,247,.5)}50%{box-shadow:0 0 0 6px rgba(79,142,247,0)}}
+.tls-stop .album{margin-top:32px}
+.tls-stop:not(.played):not(.next) .album img{filter:grayscale(1) brightness(.55)}
+</style>
+<script>
+(function () {
+  var raw = (typeof FOTOGRAFIJE !== "undefined") ? FOTOGRAFIJE : [];
+  var g = document.getElementById("galerija");
+  if (!g || !raw.length) return;
+
+  function broj(n) {
+    var a = n % 10, b = n % 100;
+    return n + " " + ((a === 1 && b !== 11) ? "fotografija" : (a >= 2 && a <= 4 && (b < 12 || b > 14)) ? "fotografije" : "fotografija");
+  }
+  function fmt(d) {
+    var p = String(d || "").split("-");
+    return p.length === 3 ? parseInt(p[2], 10) + ". " + parseInt(p[1], 10) + ". " : "";
+  }
+
+  var map = {};
+  raw.forEach(function (p) {
+    var album = p.album || p.utakmica || "Ostalo";
+    if (!map[album]) map[album] = { name: album, datum: p.datum, first: p, n: 0 };
+    if (p.datum && (!map[album].datum || p.datum < map[album].datum)) { map[album].datum = p.datum; map[album].first = p; }
+    map[album].n++;
+  });
+  var stops = Object.keys(map).map(function (k) { return map[k]; })
+    .sort(function (a, b) { return String(a.datum || "").localeCompare(String(b.datum || "")); });
+
+  var sljDatum = (typeof DATUM_UTAKMICE !== "undefined") ? DATUM_UTAKMICE.slice(0, 10) : null;
+  var vecPostoji = sljDatum && stops.some(function (s) { return s.datum === sljDatum; });
+  if (sljDatum && !vecPostoji && new Date(DATUM_UTAKMICE).getTime() > Date.now()) {
+    stops.push({
+      name: (typeof SLJEDECA_UTAKMICA_NAZIV !== "undefined") ? SLJEDECA_UTAKMICA_NAZIV : "Sljedeća utakmica",
+      datum: sljDatum, first: null, buduca: true
+    });
+  }
+  if (!stops.length) return;
+
+  var today = new Date().toISOString().slice(0, 10);
+  var sec = document.createElement("section");
+  sec.id = "tlSezona";
+  sec.innerHTML = '<div class="wrap"><h2>Sezona</h2><p class="sub">Utakmice kroz sezonu — klik otvara album.</p>' +
+    '<div class="tls-scroll"><div class="tls-track" id="tlsTrack"></div></div></div>';
+  g.parentNode.insertBefore(sec, g);
+
+  var track = document.getElementById("tlsTrack");
+  var nextEl = null;
+  stops.forEach(function (s) {
+    var status = s.buduca ? "next" : (s.datum && s.datum <= today ? "played" : "upcoming");
+    var el = document.createElement("div");
+    el.className = "tls-stop " + status;
+    var dot = document.createElement("div"); dot.className = "tls-dot";
+    var a = document.createElement("a"); a.className = "album";
+    if (!s.buduca) a.href = "#album=" + encodeURIComponent(s.name);
+    var img = document.createElement("img");
+    img.src = s.first ? s.first.file : "logo.png"; img.alt = ""; img.loading = "lazy";
+    a.appendChild(img);
+    var cap = document.createElement("span"); cap.className = "cap";
+    cap.innerHTML = "<strong></strong><span></span>";
+    cap.firstChild.textContent = s.name;
+    cap.lastChild.textContent = fmt(s.datum) + (s.buduca ? "uskoro" : broj(s.n));
+    a.appendChild(cap);
+    el.appendChild(dot); el.appendChild(a);
+    track.appendChild(el);
+    if (status === "next") nextEl = el;
+  });
+
+  var scrollTarget = nextEl || track.lastElementChild;
+  if (scrollTarget) setTimeout(function () { scrollTarget.scrollIntoView({ inline: "center", behavior: "smooth" }); }, 300);
+})();
+</script>
+<!-- ===== TIMELINE SEZONE: KRAJ ===== -->
 </body>
 </html>
