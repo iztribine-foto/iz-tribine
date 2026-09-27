@@ -1160,7 +1160,7 @@ if (!s.buduca) {
   }
 
   var scrollTarget = nextEl || track.lastElementChild;
-  if (scrollTarget) setTimeout(function () { scrollTarget.scrollIntoView({ inline: "center", behavior: "smooth" }); }, 300);
+  if (scrollTarget) setTimeout(function () { scrollTarget.scrollIntoView({ inline: "center", block: "nearest", behavior: "smooth" }); }, 300);
 })();
 </script>
 <!-- ===== TIMELINE SEZONE: KRAJ ===== -->
