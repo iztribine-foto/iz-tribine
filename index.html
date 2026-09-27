@@ -1054,8 +1054,11 @@ var GRUPA = {
   box-shadow:0 0 8px 3px rgba(125,178,255,.9)}
 .tls-stop{position:relative;width:140px;flex:0 0 auto}
 .tls-dot{position:absolute;top:0;left:0;width:22px;height:22px;border-radius:50%;
-  background:var(--bg);border:2px solid var(--blue);z-index:1}
-.tls-stop.played .tls-dot{background:var(--blue-solid)}
+  background:var(--bg);border:2px solid var(--blue);z-index:1;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Oswald",system-ui,sans-serif;font-weight:700;font-size:.65rem;
+  color:var(--blue-solid);line-height:1}
+.tls-stop.played .tls-dot{background:var(--blue-solid);color:#fff}
 .tls-stop.next .tls-dot{border-color:var(--muted);animation:tlsPulse 1.6s ease-in-out infinite}
 @keyframes tlsPulse{0%,100%{box-shadow:0 0 0 0 rgba(79,142,247,.5)}50%{box-shadow:0 0 0 6px rgba(79,142,247,0)}}
 .tls-stop .album{margin-top:32px}
@@ -1110,6 +1113,10 @@ var GRUPA = {
     var el = document.createElement("div");
     el.className = "tls-stop " + status;
     var dot = document.createElement("div"); dot.className = "tls-dot";
+if (!s.buduca) {
+  var prviJeDinamo = /^\s*dinamo/i.test(s.name);
+  dot.textContent = prviJeDinamo ? "D" : "G";
+}
     var a = document.createElement("a"); a.className = "album";
     if (!s.buduca) a.href = "#album=" + encodeURIComponent(s.name);
     if (s.buduca) {
