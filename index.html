@@ -1121,10 +1121,13 @@ var GRUPA = {
     var sljedecaMs = new Date(DATUM_UTAKMICE).getTime();
     var pct = Math.min(100, Math.max(0, (Date.now() - proslaMs) / (sljedecaMs - proslaMs) * 100));
     function postaviFill() {
-      var start = lastPlayedEl.offsetLeft + 11;
+      var start = 0;
+      var lastX = lastPlayedEl.offsetLeft + 11;
       var end = nextEl.offsetLeft + 11;
       fill.style.left = start + "px"; fill.style.width = "0px";
-      setTimeout(function () { fill.style.width = ((end - start) * pct / 100) + "px"; }, 200);
+      setTimeout(function () {
+        fill.style.width = (lastX + (end - lastX) * pct / 100) + "px";
+      }, 200);
     }
     postaviFill();
     window.addEventListener("resize", postaviFill);
