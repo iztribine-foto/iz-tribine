@@ -843,10 +843,11 @@ if (io) io.observe(stat3); else stat3.classList.add("in");
   var lbTitle = document.getElementById("lbTitle"), lbMeta = document.getElementById("lbMeta"), lbCount = document.getElementById("lbCount");
   var lbClose = document.getElementById("lbClose"), lbPrev = document.getElementById("lbPrev"), lbNext = document.getElementById("lbNext");
   var pos = 0, opener = null;
+  var lbArt = document.getElementById("lbArt");
 
   function preload(k) { var p = current[(k + current.length) % current.length]; if (p) { var im = new Image(); im.src = p.file; } }
 
-  function showLb() {
+  function showLb(dir) {
     var p = current[pos];
     lbImg.src = p.file;
     lbImg.alt = capTitle(p) + ", " + capMeta(p);
@@ -854,6 +855,9 @@ if (io) io.observe(stat3); else stat3.classList.add("in");
     lbMeta.textContent = capMeta(p);
     lbCount.textContent = (pos + 1) + " / " + current.length;
     preload(pos + 1); preload(pos - 1);
+    if (dir && lbArt.animate && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  lbArt.animate([{ opacity: 0, transform: "translateX(" + (dir * 28) + "px)" }, { opacity: 1, transform: "none" }], { duration: 320, easing: "ease-out" });
+    }
   }
   function openLb(idx, from) {
     pos = idx; opener = from; showLb();
@@ -863,7 +867,7 @@ if (io) io.observe(stat3); else stat3.classList.add("in");
     lb.hidden = true; document.body.style.overflow = "";
     if (opener && document.body.contains(opener)) opener.focus();
   }
-  function step(d) { pos = (pos + d + current.length) % current.length; showLb(); }
+  function step(d) { pos = (pos + d + current.length) % current.length; showLb(d); }
 
   lbClose.addEventListener("click", closeLb);
   lbPrev.addEventListener("click", function () { step(-1); });
