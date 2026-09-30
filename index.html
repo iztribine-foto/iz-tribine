@@ -860,6 +860,7 @@ if (io) io.observe(stat3); else stat3.classList.add("in");
   function preload(k) { var p = current[(k + current.length) % current.length]; if (p) { var im = new Image(); im.src = p.file; } }
 
   function showLb(dir) {
+    zReset();
     var p = current[pos];
     lbImg.src = p.file;
     lbImg.alt = capTitle(p) + ", " + capMeta(p);
@@ -903,7 +904,36 @@ if (io) io.observe(stat3); else stat3.classList.add("in");
     var dx = e.changedTouches[0].clientX - sx; sx = null;
     if (Math.abs(dx) > 50) step(dx < 0 ? 1 : -1);
   });
+// ---- zoom ----
+  var Z = { s: 1, x: 0, y: 0 }, ZMAX = 5;
+  var lbZIn = document.getElementById("lbZoomIn"), lbZOut = document.getElementById("lbZoomOut");
+  function zBase() {
+    var r = lbImg.getBoundingClientRect();
+    return { cx: r.left + r.width / 2 - Z.x, cy: r.top + r.height / 2 - Z.y, w: r.width / Z.s, h: r.height / Z.s };
+  }
+  function zApply() {
+    lbImg.style.transform = (Z.s === 1 && !Z.x && !Z.y) ? "" : "translate(" + Z.x + "px," + Z.y + "px) scale(" + Z.s + ")";
+    lb.classList.toggle("zoomed", Z.s > 1);
+  }
+  function zClamp(b) {
+    var W = b.w * Z.s, H = b.h * Z.s, vw = window.innerWidth, vh = window.innerHeight;
+    if (W <= vw) Z.x = 0; else Z.x = Math.min(W / 2 - b.cx, Math.max(vw - b.cx - W / 2, Z.x));
+    if (H <= vh) Z.y = 0; else Z.y = Math.min(H / 2 - b.cy, Math.max(vh - b.cy - H / 2, Z.y));
+  }
+  function zoomAt(px, py, factor) {
+    var b = zBase(), s2 = Math.min(ZMAX, Math.max(1, Z.s * factor));
+    if (s2 === Z.s) return;
+    var k = s2 / Z.s;
+    Z.x = px - b.cx - (px - b.cx - Z.x) * k;
+    Z.y = py - b.cy - (py - b.cy - Z.y) * k;
+    Z.s = s2;
+    if (factor < 1 && s2 < 1.05) { Z.s = 1; Z.x = 0; Z.y = 0; } else zClamp(b);
+    zApply();
+  }
+  function zReset() { Z.s = 1; Z.x = 0; Z.y = 0; zApply(); }
 
+  lbZIn.addEventListener("click", function () { zoomAt(window.innerWidth / 2, window.innerHeight / 2, 1.5); });
+  lbZOut.addEventListener("click", function () { zoomAt(window.innerWidth / 2, window.innerHeight / 2, 1 / 1.5); });
   route();
 })();
 </script><script>
