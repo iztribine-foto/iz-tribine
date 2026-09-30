@@ -898,9 +898,10 @@ if (io) io.observe(stat3); else stat3.classList.add("in");
     }
   });
   var sx = null, fig = document.getElementById("lbFig");
-  fig.addEventListener("touchstart", function (e) { sx = e.touches[0].clientX; }, { passive: true });
+  fig.addEventListener("touchstart", function (e) { sx = e.touches.length === 1 ? e.touches[0].clientX : null; }, { passive: true });
   fig.addEventListener("touchend", function (e) {
     if (sx === null) return;
+    if (Z.s > 1) { sx = null; return; }
     var dx = e.changedTouches[0].clientX - sx; sx = null;
     if (Math.abs(dx) > 50) step(dx < 0 ? 1 : -1);
   });
@@ -934,6 +935,53 @@ if (io) io.observe(stat3); else stat3.classList.add("in");
 
   lbZIn.addEventListener("click", function () { zoomAt(window.innerWidth / 2, window.innerHeight / 2, 1.5); });
   lbZOut.addEventListener("click", function () { zoomAt(window.innerWidth / 2, window.innerHeight / 2, 1 / 1.5); });
+  function zPanBy(dx, dy) {
+    if (Z.s === 1) return;
+    var b = zBase(); Z.x += dx; Z.y += dy; zClamp(b); zApply();
+  }
+  function zToggle(x, y) { if (Z.s > 1) zReset(); else zoomAt(x, y, 2.5); }
+
+  lb.addEventListener("wheel", function (e) {
+    e.preventDefault();
+    zoomAt(e.clientX, e.clientY, Math.exp(-e.deltaY * (e.ctrlKey ? 0.01 : 0.0015)));
+  }, { passive: false });
+
+  var ptrs = {}, multi = false, lastTap = 0, lastTX = 0, lastTY = 0, lastType = "mouse";
+  lbArt.addEventListener("pointerdown", function (e) {
+    if (e.pointerType === "mouse" && e.button !== 0) return;
+    lastType = e.pointerType;
+    try { lbArt.setPointerCapture(e.pointerId); } catch (_) {}
+    ptrs[e.pointerId] = { x: e.clientX, y: e.clientY, sx: e.clientX, sy: e.clientY };
+    if (Object.keys(ptrs).length >= 2) multi = true;
+  });
+  lbArt.addEventListener("pointermove", function (e) {
+    var p = ptrs[e.pointerId]; if (!p) return;
+    var ids = Object.keys(ptrs);
+    if (ids.length === 2) {
+      var a = ptrs[ids[0]], c = ptrs[ids[1]];
+      var d0 = Math.hypot(a.x - c.x, a.y - c.y), mx0 = (a.x + c.x) / 2, my0 = (a.y + c.y) / 2;
+      p.x = e.clientX; p.y = e.clientY;
+      var d1 = Math.hypot(a.x - c.x, a.y - c.y), mx1 = (a.x + c.x) / 2, my1 = (a.y + c.y) / 2;
+      if (d0 > 0) zoomAt(mx0, my0, d1 / d0);
+      zPanBy(mx1 - mx0, my1 - my0);
+    } else if (ids.length === 1 && Z.s > 1) {
+      zPanBy(e.clientX - p.x, e.clientY - p.y);
+      p.x = e.clientX; p.y = e.clientY;
+    }
+  });
+  function pEnd(e) {
+    var p = ptrs[e.pointerId]; if (!p) return;
+    delete ptrs[e.pointerId];
+    if (e.type === "pointerup" && e.pointerType === "touch" && !multi && Math.hypot(e.clientX - p.sx, e.clientY - p.sy) < 10) {
+      var t = Date.now();
+      if (t - lastTap < 300 && Math.hypot(e.clientX - lastTX, e.clientY - lastTY) < 40) { zToggle(e.clientX, e.clientY); lastTap = 0; }
+      else { lastTap = t; lastTX = e.clientX; lastTY = e.clientY; }
+    }
+    if (!Object.keys(ptrs).length) multi = false;
+  }
+  lbArt.addEventListener("pointerup", pEnd);
+  lbArt.addEventListener("pointercancel", pEnd);
+  lbArt.addEventListener("dblclick", function (e) { if (lastType === "mouse") zToggle(e.clientX, e.clientY); }); a 
   route();
 })();
 </script><script>
