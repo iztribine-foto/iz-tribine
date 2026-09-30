@@ -281,6 +281,16 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
   padding: 56px 12px 16px;
   background: rgba(3, 6, 12, .95);
 }
+  /* zoom */
+.lb { overflow: hidden; }
+.lb-art { touch-action: none; z-index: 1; }
+.lb-art img { transform-origin: 50% 50%; will-change: transform; cursor: zoom-in; -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
+.lb.zoomed .lb-art { overflow: visible; border-radius: 0; }
+.lb.zoomed .lb-art img { cursor: grab; }
+.lb.zoomed .lb-cap, .lb.zoomed .lb-count { opacity: 0; pointer-events: none; }
+.lb-zin { top: 8px; right: 66px; }
+.lb-zout { top: 8px; right: 120px; }
+
 .lb-fig { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 12px; touch-action: pan-y; }
 .lb-art { position: relative; display: inline-block; line-height: 0; border-radius: 6px; overflow: hidden; }
 .lb-art img { display: block; width: auto; height: auto; max-width: 92vw; max-height: 68svh; }
@@ -529,6 +539,8 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
 <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Pregled fotografije">
   <div class="lb-count" id="lbCount"></div>
   <button class="lb-btn lb-close" id="lbClose" aria-label="Zatvori"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <button class="lb-btn lb-zin" id="lbZoomIn" aria-label="Povećaj"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+  <button class="lb-btn lb-zout" id="lbZoomOut" aria-label="Smanji"><svg viewBox="0 0 24 24"><path d="M5 12h14"/></svg></button>
   <button class="lb-btn lb-prev" id="lbPrev" aria-label="Prethodna fotografija"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
   <button class="lb-btn lb-next" id="lbNext" aria-label="Sljedeća fotografija"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
   <figure class="lb-fig" id="lbFig">
