@@ -734,10 +734,17 @@ function pokreniBrojanje() {
   countUp(document.getElementById("stFoto"), photos.length, 1500);
   countUp(document.getElementById("stUtak"), albumOrder.length, 1500);
 }
+    function cekajIntro() {
+  if (document.getElementById("intro")) {
+    setTimeout(cekajIntro, 200);
+  } else {
+    setTimeout(pokreniBrojanje, 500);
+  }
+    }
 if ("IntersectionObserver" in window) {
   var statsIO = new IntersectionObserver(function (entries) {
     if (entries[0].isIntersecting) {
-      setTimeout(pokreniBrojanje, 300);
+      cekajIntro();
       statsIO.disconnect();
     }
   }, { threshold: 0.6 });
