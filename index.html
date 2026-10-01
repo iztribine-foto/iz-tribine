@@ -703,8 +703,9 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
     });
   }, { rootMargin: "0px 0px -8% 0px" }) : null;
   function countUp(el, target, dur) {
-  var start = performance.now();
+  var start = null;
   function tick(now) {
+    if (start === null) start = now;
     var p = Math.min(1, (now - start) / dur);
     var eased = 1 - Math.pow(1 - p, 3);
     el.textContent = Math.round(eased * target);
