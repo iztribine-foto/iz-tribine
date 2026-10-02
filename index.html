@@ -121,6 +121,11 @@ button { font: inherit; color: inherit; }
   color: transparent; -webkit-text-fill-color: transparent;
   -webkit-text-stroke: 3px rgba(255, 255, 255, .6);
 }
+.hero h1 span { animation: dzgFill .6s ease-out forwards; }
+.hero h1 span:nth-child(1) { animation-delay: 3s; }
+.hero h1 span:nth-child(2) { animation-delay: 3.4s; }
+.hero h1 span:nth-child(3) { animation-delay: 3.8s; }
+@keyframes dzgFill { to { -webkit-text-fill-color: #2f6fed; -webkit-text-stroke-color: #2f6fed; } }
 .dzg-line { display: flex; height: 3px; margin-top: 14px; }
 .dzg-line i { flex: 1; }
 .dzg-line i:nth-child(1) { background: #2f6fed; }
@@ -448,7 +453,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
       
       <p class="eyebrow">Bad Blue Boys · Sezona 26/27</p>
       <div class="dzg-wrap">
-  <h1 id="naslov" aria-label="Dinamo Zagreb">DZG</h1>
+  <h1 id="naslov" aria-label="Dinamo Zagreb"><span>D</span><span>Z</span><span>G</span></h1>
   <div class="dzg-line" aria-hidden="true"><i></i><i></i><i></i></div>
       </div>
       <div class="countdown" id="countdown">
