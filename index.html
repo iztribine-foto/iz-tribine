@@ -7,8 +7,7 @@
 <title>Iz Tribine — fotografije s tribina</title>
 <meta name="description" content="Fotografije s tribina Dinama i Bad Blue Boysa — trenuci koji traju sekundu, uhvaćeni da traju dulje.">
 <meta property="og:title" content="Iz Tribine — fotografije s tribina">
-<meta property="og:description" content="Fotografije s tribina Dinama i Bad Blue Boysa.">
-  <meta property="og:image" content="https://iztribine-foto.github.io/iz-tribine/preview.jpg">
+<meta property="og:description" content="Fotografije s tribina Dinama i Bad Blue Boysa.">  <meta property="og:image" content="https://iztribine-foto.github.io/iz-tribine/preview.jpg">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://iztribine-foto.github.io/iz-tribine/">
 <meta name="twitter:card" content="summary_large_image">
@@ -670,7 +669,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
   sezone.sort().reverse();
 
   
-var sezonaSelect = null;
+
 var aktivnaSezona = sezone.length ? sezone[0] : "";
 var sezonaWrap = document.getElementById("sezonaWrap");
 if (sezonaWrap && sezone.length) {
@@ -696,15 +695,22 @@ if (sezonaWrap && sezone.length) {
     });
   }
   buildAlbums(sezonaSelect ? sezonaSelect.value : "");
+buildAlbums(aktivnaSezona);
 
-  if (sezonaSelect) {
-    sezonaSelect.addEventListener("change", function () {
-      buildAlbums(this.value);
-      if (location.hash.indexOf("#album=") === 0) location.hash = "#galerija";
-      view = null;
-      route();
+if (sezonaWrap) {
+  sezonaWrap.addEventListener("click", function (e) {
+    var b = e.target.closest(".sez-chip");
+    if (!b) return;
+    aktivnaSezona = b.dataset.sezona;
+    sezonaWrap.querySelectorAll(".sez-chip").forEach(function (x) {
+      x.classList.toggle("on", x === b);
     });
-  }
+    buildAlbums(aktivnaSezona);
+    if (location.hash.indexOf("#album=") === 0) location.hash = "#galerija";
+    view = null;
+    route();
+  });
+}
 
   // gumb "Pogledaj galeriju" otvara najnoviju galeriju
   var btnGal = document.getElementById("btnGalerija");
