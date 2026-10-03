@@ -237,6 +237,10 @@ h2 { margin: 0 0 12px; font-size: clamp(2rem, 7vw, 3.2rem); font-weight: 700; te
 .back:hover { color: var(--text); border-color: #2b3a63; }
 .albumbar h3 { margin: 20px 0 4px; font-size: clamp(1.6rem, 6vw, 2.4rem); font-weight: 700; text-transform: uppercase; line-height: 1.05; }
 .albumbar p { margin: 0; color: var(--muted); font-weight: 300; }
+.season-chips { display: flex; gap: 8px; overflow-x: auto; margin: 0 0 20px; padding-bottom: 4px; }
+.sez-chip { flex: none; background: var(--surface); color: var(--text); border: 1px solid var(--line); border-radius: 999px; padding: 8px 16px; font-size: .95rem; cursor: pointer; }
+.sez-chip:hover { border-color: var(--blue); }
+.sez-chip.on { background: var(--blue); border-color: var(--blue); color: #fff; }
 
 /* galerija */
 .grid { columns: 2; column-gap: 10px; }
@@ -665,23 +669,21 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
   });
   sezone.sort().reverse();
 
-  var sezonaWrap = document.getElementById("sezonaWrap"), sezonaSelect = null;
-  if (sezonaWrap && sezone.length > 1) {
-    sezonaSelect = document.createElement("select");
-    sezonaSelect.className = "season-select";
-    sezonaSelect.id = "sezonaSelect";
-    sezonaSelect.setAttribute("aria-label", "Odaberi sezonu");
-    var optSve = document.createElement("option");
-    optSve.value = ""; optSve.textContent = "Sve sezone";
-    sezonaSelect.appendChild(optSve);
-    sezone.forEach(function (s) {
-      var o = document.createElement("option");
-      o.value = s; o.textContent = "Sezona " + s;
-      sezonaSelect.appendChild(o);
-    });
-    sezonaSelect.value = sezone[0];
-    sezonaWrap.appendChild(sezonaSelect);
-  }
+  
+var sezonaSelect = null;
+var aktivnaSezona = sezone.length ? sezone[0] : "";
+var sezonaWrap = document.getElementById("sezonaWrap");
+if (sezonaWrap && sezone.length) {
+  sezonaWrap.classList.add("season-chips");
+  sezone.forEach(function (s) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "sez-chip" + (s === aktivnaSezona ? " on" : "");
+    b.textContent = "Sezona " + s;
+    b.dataset.sezona = s;
+    sezonaWrap.appendChild(b);
+  });
+}
 
   // ---- albumi (grupirano po odabranoj sezoni) ----
   var albumMap = {}, albumOrder = [];
