@@ -693,9 +693,7 @@ if (sezonaWrap && sezone.length) {
       if (!albumMap[p.album]) { albumMap[p.album] = { name: p.album, photos: [] }; albumOrder.push(p.album); }
       albumMap[p.album].photos.push(p);
     });
-  }
-  buildAlbums(sezonaSelect ? sezonaSelect.value : "");
-
+  } buildAlbums (aktivnaSezona);
 
 if (sezonaWrap) {
   sezonaWrap.addEventListener("click", function (e) {
