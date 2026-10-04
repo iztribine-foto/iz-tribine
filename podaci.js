@@ -53,6 +53,7 @@ const FOTOGRAFIJE =[ { file: "foto/1787431388005.jpg", utakmica: "DINAMO - HAJDU
   { file: "foto/Hrk5.jpg", utakmica: "Vukovar - Dinamo (kup)", datum: "2026-10-04" },
   { file: "foto/hrk6.jpg", utakmica: "Vukovar - Dinamo (kup)", datum: "2026-10-04" },
   { file: "foto/hrk7.jpg", utakmica: "Vukovar - Dinamo (kup)", datum: "2026-10-04" },
+  { file: "foto/hrk8.jpg", utakmica: "Vukovar - Dinamo (kup)", datum: "2026-10-04" },
                     
                     
                     
