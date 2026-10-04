@@ -47,7 +47,7 @@ const FOTOGRAFIJE =[ { file: "foto/1787431388005.jpg", utakmica: "DINAMO - HAJDU
   { file: "foto/89701-photo7.avif", utakmica: "MNK Futsal Dinamo", datum: "2026-09-27", izvanSezone: true },
   { file: "foto/photo8.avif", utakmica: "MNK Futsal Dinamo", datum: "2026-09-20", izvanSezone: true },
   { file: "foto/hrk.jpg", utakmica: "Vukovar - Dinamo (kup)", datum: "2026-10-04" },
-  { file: "foto/hrk1.jpg", utakmica: "Vukovar - Dinamo (kup", datum: "2026-10-04" },
+  { file: "foto/hrk1.jpg", utakmica: "Vukovar - Dinamo (kup)", datum: "2026-10-04" },
   { file: "foto/hrk2.jpg", utakmica: "Vukovar - Dinamo (kup)", datum: "2026-10-04" },
                     
                     
