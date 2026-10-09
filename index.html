@@ -1181,6 +1181,88 @@ var GRUPA = {
     });
   }
   </script>
+  <!-- ===== INSTALACIJA APLIKACIJE: početak ===== -->
+<style>
+#inst { position: fixed; left: 0; right: 0; bottom: 0; z-index: 45; display: flex; align-items: center; gap: 12px; padding: 12px 14px calc(12px + env(safe-area-inset-bottom, 0px)); background: var(--surface); border-top: 2px solid var(--blue-solid); font-size: .92rem; line-height: 1.4; }
+.inst-ico { width: 44px; height: 44px; flex: none; padding: 7px; border-radius: 50%; border: 2px solid var(--blue); background: var(--bg); object-fit: contain; }
+.inst-txt { flex: 1; min-width: 0; }
+.inst-txt strong { display: block; font-family: var(--font-ultras); letter-spacing: .04em; font-weight: 600; }
+.inst-txt span { color: var(--muted); font-size: .84rem; }
+#instGo { margin: 0; padding: 10px 16px; flex: none; }
+.inst-x { flex: none; background: none; border: 0; color: var(--muted); font-size: 1.5rem; line-height: 1; padding: 6px; cursor: pointer; }
+</style>
+
+<div id="inst" hidden>
+  <img class="inst-ico" src="logo.png" alt="">
+  <div class="inst-txt"><strong id="instT"></strong><span id="instS"></span></div>
+  <button type="button" class="btn" id="instGo" hidden></button>
+  <button type="button" class="inst-x" id="instX" aria-label="Zatvori">&times;</button>
+</div>
+
+<script>
+(function () {
+  var ua = navigator.userAgent;
+  var bar = document.getElementById("inst");
+  var naslov = document.getElementById("instT");
+  var opis = document.getElementById("instS");
+  var gumb = document.getElementById("instGo");
+  var zatvori = document.getElementById("instX");
+
+  // vec instalirana aplikacija: ne prikazuj nista
+  var standalone = (window.matchMedia && matchMedia("(display-mode: standalone)").matches) || navigator.standalone;
+  if (standalone) return;
+
+  // ako je korisnik zatvorio traku, ne pokazuj 7 dana (za testiranje dodaj ?inst na link)
+  var test = location.search.indexOf("inst") !== -1;
+  try {
+    var t = localStorage.getItem("instSkriven");
+    if (!test && t && Date.now() - Number(t) < 7 * 864e5) return;
+  } catch (e) {}
+
+  var uFacebooku = /FBAN|FBAV|FB_IAB|Instagram/i.test(ua);
+  var ios = /iPhone|iPad|iPod/i.test(ua);
+  var android = /Android/i.test(ua);
+
+  function pokazi(n, o, tekstGumba, akcija) {
+    naslov.textContent = n;
+    opis.textContent = o;
+    if (tekstGumba) {
+      gumb.textContent = tekstGumba;
+      gumb.onclick = akcija;
+      gumb.hidden = false;
+    }
+    setTimeout(function () { bar.hidden = false; }, 4000); // nakon intra
+  }
+
+  if (uFacebooku && android) {
+    pokazi("Otvori u pregledniku", "Za najbolje iskustvo i instalaciju aplikacije.", "Otvori", function () {
+      location.href = "intent://" + location.host + location.pathname + location.search +
+        "#Intent;scheme=https;package=com.android.chrome;end";
+    });
+  } else if (uFacebooku && ios) {
+    pokazi("Otvori u pregledniku", "Dodirni ••• pa Otvori u pregledniku.");
+  } else if (ios) {
+    pokazi("Instaliraj aplikaciju", "Dodirni Podijeli, pa Dodaj na početni zaslon.");
+  } else {
+    var odgodjeno = null;
+    window.addEventListener("beforeinstallprompt", function (e) {
+      e.preventDefault();
+      odgodjeno = e;
+      pokazi("Instaliraj aplikaciju", "Brži pristup s početnog zaslona.", "Instaliraj", function () {
+        odgodjeno.prompt();
+        odgodjeno.userChoice.then(function () { odgodjeno = null; bar.hidden = true; });
+      });
+    });
+    window.addEventListener("appinstalled", function () { bar.hidden = true; });
+  }
+
+  zatvori.addEventListener("click", function () {
+    bar.hidden = true;
+    try { localStorage.setItem("instSkriven", String(Date.now())); } catch (e) {}
+  });
+})();
+</script>
+<!-- ===== INSTALACIJA APLIKACIJE: KRAJ ===== -->
   <!-- ===== TIMELINE SEZONE: početak (za micanje obriši sve do KRAJ) ===== -->
 <style>
   .tls-next-thumb{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
