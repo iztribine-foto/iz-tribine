@@ -57,5 +57,10 @@ const FOTOGRAFIJE =[ { file: "foto/1787431388005.jpg", utakmica: "DINAMO - HAJDU
   { file: "foto/hrk9.jpg", utakmica: "Vukovar - Dinamo (kup)", datum: "2026-10-04" },
   { file: "foto/hrk10.jpg", utakmica: "Vukovar - Dinamo (kup)", datum: "2026-10-04" },
   { file: "foto/2026-10-04-vukovar-dinamo-kup-01-v2fe.jpg", utakmica: "Vukovar - Dinamo (kup)", datum: "2026-10-04" },
+  { file: "foto/2026-10-10-hajduk-dinamo-01-oqbz.jpg", utakmica: "HAJDUK - DINAMO", datum: "2026-10-10" },
+  { file: "foto/2026-10-10-hajduk-dinamo-02-oqbz.jpg", utakmica: "HAJDUK - DINAMO", datum: "2026-10-10" },
+  { file: "foto/2026-10-10-hajduk-dinamo-03-oqbz.jpg", utakmica: "HAJDUK - DINAMO", datum: "2026-10-10" },
+  { file: "foto/2026-10-10-hajduk-dinamo-04-oqbz.jpg", utakmica: "HAJDUK - DINAMO", datum: "2026-10-10" },
+  { file: "foto/2026-10-10-hajduk-dinamo-05-oqbz.jpg", utakmica: "HAJDUK - DINAMO", datum: "2026-10-10" },
 ];
 
