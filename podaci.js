@@ -69,5 +69,6 @@ const FOTOGRAFIJE =[ { file: "foto/1787431388005.jpg", utakmica: "DINAMO - HAJDU
   { file: "foto/2026-10-10-hajduk-dinamo-01-1b6n.jpg", utakmica: "HAJDUK - DINAMO", datum: "2026-10-10" },
   { file: "foto/2026-10-10-hajduk-dinamo-01-xsqi.jpg", utakmica: "HAJDUK - DINAMO", datum: "2026-10-10" },
   { file: "foto/2026-10-10-hajduk-dinamo-01-3bjp.jpg", utakmica: "HAJDUK - DINAMO", datum: "2026-10-10" },
+  { file: "foto/2026-10-10-hajduk-dinamo-01-4ocu.jpg", utakmica: "HAJDUK - DINAMO", datum: "2026-10-10" },
 ];
 
