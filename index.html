@@ -407,6 +407,37 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
 }
 .hero .cd-box:hover { box-shadow: none !important; }
 .hero .cd-box + .cd-box { border-left: 1px solid rgba(79, 142, 247, .2) !important; }
+
+ /* ===== HERO SLIDESHOW ===== */
+.hero-slides { position: absolute; inset: 0; z-index: -2; overflow: hidden; }
+.hs-slide {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  filter: grayscale(1);
+  opacity: 0; transition: opacity 1.6s ease;
+}
+.hs-slide.on { opacity: 1; animation: hsKb 9s ease-out forwards; }
+.hs-slide:nth-child(even).on { animation-name: hsKb2; }
+@keyframes hsKb  { from { transform: scale(1.02); } to { transform: scale(1.14) translate(-1.5%, -1%); } }
+@keyframes hsKb2 { from { transform: scale(1.14) translate(1.5%, 0); } to { transform: scale(1.02); } }
+.hero-slides.calm .hs-slide.on { animation: none; }
+
+.hs-panel {
+  display: inline-block; margin-top: 16px; padding: 12px 16px;
+  min-width: min(100%, 300px);
+  background: rgba(13, 20, 36, .35);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(79, 142, 247, .3); border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, .4);
+}
+.hs-cap { display: block; color: #cfd8f0; font-size: .95rem; transition: opacity .4s; }
+.hs-cap:hover { color: #fff; }
+.hs-dots { display: flex; gap: 8px; margin-top: 12px; }
+.hs-dot { flex: 0 0 38px; height: 3px; padding: 0; border: 0; border-radius: 2px; background: rgba(255, 255, 255, .25); position: relative; overflow: hidden; cursor: pointer; }
+.hs-dot b { position: absolute; inset: 0; background: var(--blue); transform: scaleX(0); transform-origin: left; }
+.hs-dot.done b { transform: scaleX(1); }
+.hs-dot.on b { animation: hsFill var(--dur, 6s) linear forwards; }
+@keyframes hsFill { to { transform: scaleX(1); } }
 </style>
 </head>
 <body>
@@ -1430,5 +1461,81 @@ if (scrollTarget) setTimeout(function () {
 })();
 </script>
 <!-- ===== TIMELINE SEZONE: KRAJ ===== -->
+  <!-- ===== HERO SLIDESHOW: početak ===== -->
+<script>
+(function () {
+  var hero = document.querySelector(".hero"), inner = document.querySelector(".hero-inner");
+  var raw = (typeof FOTOGRAFIJE !== "undefined") ? FOTOGRAFIJE : [];
+  if (!hero || !inner || !raw.length) return;
+
+  var BROJ = 5;          // koliko slika u slideshowu
+  var TRAJANJE = 6000;   // ms po slici (6000 = 6 sekundi)
+
+  var sorted = raw.filter(function (p) { return !p.izvanSezone; })
+    .sort(function (a, b) { return String(b.datum || "").localeCompare(String(a.datum || "")); });
+  var seen = {}, list = [];
+  sorted.forEach(function (p) {
+    var a = p.album || p.utakmica || "Ostalo";
+    if (!seen[a] && list.length < BROJ) { seen[a] = 1; list.push({ file: p.file, album: a }); }
+  });
+  if (list.length < 2) return;
+
+  var wrap = document.createElement("div");
+  wrap.className = "hero-slides";
+  if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) wrap.classList.add("calm");
+  hero.insertBefore(wrap, hero.firstChild);
+
+  var panel = document.createElement("div");
+  panel.className = "hs-panel";
+  panel.innerHTML = '<a class="hs-cap" href="#"></a><div class="hs-dots"></div>';
+  inner.appendChild(panel);
+  var cap = panel.querySelector(".hs-cap"), dotsEl = panel.querySelector(".hs-dots");
+
+  var slides = [], dots = [], cur = -1, timer = null;
+  list.forEach(function (it, k) {
+    var s = document.createElement("div");
+    s.className = "hs-slide"; s.dataset.src = encodeURI(it.file);
+    wrap.appendChild(s); slides.push(s);
+    var d = document.createElement("button");
+    d.type = "button"; d.className = "hs-dot"; d.innerHTML = "<b></b>";
+    d.setAttribute("aria-label", "Slika " + (k + 1));
+    d.style.setProperty("--dur", TRAJANJE + "ms");
+    d.addEventListener("click", function () { go(k); });
+    dotsEl.appendChild(d); dots.push(d);
+  });
+
+  function load(k, cb) {
+    var s = slides[k];
+    if (s.dataset.ready) { if (cb) cb(); return; }
+    var im = new Image();
+    im.onload = im.onerror = function () {
+      s.style.backgroundImage = 'url("' + s.dataset.src + '")';
+      s.dataset.ready = 1; if (cb) cb();
+    };
+    im.src = s.dataset.src;
+  }
+  function go(k) {
+    clearTimeout(timer);
+    load(k, function () {
+      slides.forEach(function (s, i) { s.classList.remove("on"); if (i === k) { void s.offsetWidth; s.classList.add("on"); } });
+      dots.forEach(function (d, i) { d.classList.remove("on"); d.classList.toggle("done", i < k); if (i === k) { void d.offsetWidth; d.classList.add("on"); } });
+      cap.style.opacity = 0;
+      setTimeout(function () {
+        cap.textContent = list[k].album + " →";
+        cap.href = "#album=" + encodeURIComponent(list[k].album);
+        cap.style.opacity = 1;
+      }, 350);
+      cur = k;
+      load((k + 1) % slides.length);
+      timer = setTimeout(function () { go((k + 1) % slides.length); }, TRAJANJE);
+    });
+  }
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) clearTimeout(timer); else go(cur < 0 ? 0 : cur);
+  });
+  go(0);
+})();
+</script>
+<!-- ===== HERO SLIDESHOW: KRAJ ===== -->
 </body>
 </html>
