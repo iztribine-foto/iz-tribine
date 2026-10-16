@@ -438,6 +438,17 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
 .hs-dot.done b { transform: scaleX(1); }
 .hs-dot.on b { animation: hsFill var(--dur, 6s) linear forwards; }
 @keyframes hsFill { to { transform: scaleX(1); } }
+/* ===== POPRAVAK: staklo na countdownu ===== */
+#countdown .cd-boxes {
+  background: rgba(13, 20, 36, .35) !important;
+  border: 1px solid rgba(79, 142, 247, .3) !important;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, .4) !important;
+}
+#countdown .cd-boxes:hover {
+  border-color: rgba(79, 142, 247, .8) !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, .6), 0 0 25px rgba(47, 110, 237, .35) !important;
+}
 </style>
 </head>
 <body>
