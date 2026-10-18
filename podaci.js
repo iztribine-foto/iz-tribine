@@ -80,5 +80,8 @@ const FOTOGRAFIJE =[ { file: "foto/1787431388005.jpg", utakmica: "DINAMO - HAJDU
   { file: "foto/2026-10-18-slaven-belupo-dinamo-03-b0lf.jpg", utakmica: "SLAVEN BELUPO - DINAMO", datum: "2026-10-18" },
   { file: "foto/2026-10-18-slaven-belupo-dinamo-04-b0lf.jpg", utakmica: "SLAVEN BELUPO - DINAMO", datum: "2026-10-18" },
   { file: "foto/2026-10-18-slaven-belupo-dinamo-01-cer3.jpg", utakmica: "SLAVEN BELUPO - DINAMO", datum: "2026-10-18" },
+  { file: "foto/2026-10-18-slaven-belupo-dinamo-01-mf51.jpg", utakmica: "SLAVEN BELUPO - DINAMO", datum: "2026-10-18" },
+  { file: "foto/2026-10-18-slaven-belupo-dinamo-02-mf51.jpg", utakmica: "SLAVEN BELUPO - DINAMO", datum: "2026-10-18" },
+  { file: "foto/2026-10-18-slaven-belupo-dinamo-03-mf51.jpg", utakmica: "SLAVEN BELUPO - DINAMO", datum: "2026-10-18" },
 ];
 
