@@ -245,8 +245,8 @@ h2 { margin: 0 0 12px; font-size: clamp(2rem, 7vw, 3.2rem); font-weight: 700; te
 .info-btn { flex: none; width: 40px; height: 40px; margin-top: 20px; padding: 0; display: flex; align-items: center; justify-content: center; background: none; border: 1.5px solid var(--blue); border-radius: 50%; color: var(--blue); font-family: "Oswald", sans-serif; font-weight: 600; font-size: 1.2rem; line-height: 1; cursor: pointer; }
 .info-btn[hidden] { display: none; }
 .info-btn:hover { background: var(--blue); color: #fff; }
-.sheet-ov { position: fixed; inset: 0; z-index: 54; background: rgba(0, 0, 0, .6); }
-.sheet { position: fixed; left: 0; right: 0; bottom: 0; z-index: 55; max-height: 70vh; overflow-y: auto; background: var(--surface); border-radius: 16px 16px 0 0; padding: 22px 20px calc(24px + env(safe-area-inset-bottom, 0px)); }
+.sheet-ov { background: rgba(0, 0, 0, .55); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.sheet { border-radius: 24px 24px 0 0; padding: 34px 22px calc(26px + env(safe-area-inset-bottom, 0px)); } .sheet::after { content: ""; position: absolute; top: 12px; left: 50%; width: 40px; height: 4px; margin-left: -20px; border-radius: 2px; background: rgba(255, 255, 255, .25); }
 .sheet::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: linear-gradient(90deg, #2f6fed 0 33.33%, #fff 33.33% 66.66%, #000 66.66%); }
 .sheet-top { display: flex; justify-content: space-between; align-items: center; }
 .sheet h4 { margin: 0; font-family: var(--font-ultras); font-size: 1rem; letter-spacing: .14em; text-transform: uppercase; }
