@@ -89,6 +89,6 @@ const FOTOGRAFIJE =[ { file: "foto/1787431388005.jpg", utakmica: "DINAMO - HAJDU
 ];
 
 var DETALJI = {
-  "Slaven Belupo - Dinamo": "Ovdje upiši svoj tekst o utakmici."
+  "SLAVEN BELUPO - DINAMO": "Ovdje upiši svoj tekst o utakmici."
 };
 
