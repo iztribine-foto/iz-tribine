@@ -88,3 +88,7 @@ const FOTOGRAFIJE =[ { file: "foto/1787431388005.jpg", utakmica: "DINAMO - HAJDU
   { file: "foto/2026-10-18-slaven-belupo-dinamo-01-zh6g.jpg", utakmica: "SLAVEN BELUPO - DINAMO", datum: "2026-10-18" },
 ];
 
+var DETALJI = {
+  "Slaven Belupo - Dinamo": "Ovdje upiši svoj tekst o utakmici."
+};
+
