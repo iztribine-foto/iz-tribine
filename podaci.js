@@ -89,8 +89,8 @@ const FOTOGRAFIJE =[ { file: "foto/1787431388005.jpg", utakmica: "DINAMO - HAJDU
 ];
 
 var DETALJI = {
-  "SLAVEN BELUPO - DINAMO": "10. kolo HNL. Stadion Ivan Kušek Apaš, Koprivnica."
-  "DINAMO - ANDERLECHT": "2. pretkolo UEFA Europa liga. Stadion Maksimir."
+  "SLAVEN BELUPO - DINAMO": "10. kolo HNL. Stadion Ivan Kušek Apaš, Koprivnica.",
+  "DINAMO - ANDERLECHT": "2. pretkolo UEFA Europa liga. Stadion Maksimir.",
 };
 
 
