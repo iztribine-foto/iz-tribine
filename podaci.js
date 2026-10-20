@@ -92,8 +92,8 @@ var DETALJI = {
   "SLAVEN BELUPO - DINAMO": "10. kolo HNL. Stadion Ivan Kušek Apaš, Koprivnica.",
   "DINAMO - ANDERLECHT": "2. pretkolo UEFA Europa lige. Stadion Maksimir.",
   "HAJDUK - DINAMO": "9. kolo HNL. Stadion Poljud.",
-  "VUKOVAR - DINAMO (KUP)": "Osmina finala kupa. Stadion Borovo naselje.",
-};
+  "Vukovar - Dinamo (kup)": "Osmina finala kupa. Stadion Borovo naselje.",
+  };
 
 
 
