@@ -240,7 +240,11 @@ h2 { margin: 0 0 12px; font-size: clamp(2rem, 7vw, 3.2rem); font-weight: 700; te
 .season-chips { display: flex; gap: 8px; overflow-x: auto; margin: 0 0 20px; padding-bottom: 4px; }
 .sez-chip { flex: none; background: var(--surface); color: var(--text); border: 1px solid var(--line); border-radius: 999px; padding: 8px 16px; font-size: .95rem; cursor: pointer; }
 .sez-chip:hover { border-color: var(--blue); }
-.sez-chip.on { background: var(--blue); border-color: var(--blue); color: #fff; }
+.sez-chip.on { background: var(--blue); border-color: var(--blue); color: #fff; } .album-head { display: flex; align-items: flex-start; gap: 12px; }
+.album-head h3 { flex: 1; min-width: 0; }
+.info-btn { flex: none; width: 40px; height: 40px; margin-top: 20px; padding: 0; display: flex; align-items: center; justify-content: center; background: none; border: 1.5px solid var(--blue); border-radius: 50%; color: var(--blue); font-family: "Oswald", sans-serif; font-weight: 600; font-size: 1.2rem; line-height: 1; cursor: pointer; }
+.info-btn[hidden] { display: none; }
+.info-btn:hover { background: var(--blue); color: #fff; }
 
 /* galerija */
 .grid { columns: 2; column-gap: 10px; }
