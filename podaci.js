@@ -92,7 +92,7 @@ var DETALJI = {
   "SLAVEN BELUPO - DINAMO": "10. kolo HNL. Stadion Ivan Kušek Apaš, Koprivnica."
   "DINAMO - ANDERLECHT": "2. pretkolo UEFA Europa liga. Stadion Maksimir."
 };
-};
+
 
 
 
