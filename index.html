@@ -931,7 +931,18 @@ if (io) io.observe(stat3); else stat3.classList.add("in");
     });
   }
 
-
+var sheet = document.getElementById("sheet"), sheetOv = document.getElementById("sheetOv");
+function openSheet() {
+  var name = document.getElementById("infoBtn").dataset.album;
+  document.getElementById("sheetMeta").textContent = name + (current.length ? " · " + formatDatum(current[0].datum) : "");
+  document.getElementById("sheetText").textContent = DETALJI[name];
+  sheet.hidden = false; sheetOv.hidden = false;
+}
+function closeSheet() { sheet.hidden = true; sheetOv.hidden = true; }
+document.getElementById("infoBtn").addEventListener("click", openSheet);
+document.getElementById("sheetX").addEventListener("click", closeSheet);
+sheetOv.addEventListener("click", closeSheet);
+document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeSheet(); });
   function showAlbum(name) {
     var a = albumMap[name];
     current = a.photos;
@@ -940,6 +951,11 @@ if (io) io.observe(stat3); else stat3.classList.add("in");
     barEl.hidden = false; gridEl.hidden = false;
     document.getElementById("albumTitle").textContent = name;
     document.getElementById("albumMeta").textContent = brojFoto(current.length);
+    closeSheet();
+var infoBtn = document.getElementById("infoBtn");
+var det = (typeof DETALJI !== "undefined") ? DETALJI[name] : "";
+infoBtn.hidden = !det;
+infoBtn.dataset.album = name;
     gridEl.innerHTML = "";
     current.forEach(function (p, i) {
       var t = document.createElement("button");
