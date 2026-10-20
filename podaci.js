@@ -92,6 +92,5 @@ var DETALJI = {
   "slaven belupo - dinamo": "10. kolo HNL. Stadion Ivan Kušek Apaš, Koprivnica."
 };
 
-var DETALJI = {
-  "dinamo - anderlecht": "2. pretkolo UEFA Europa lige. Stadion Maksimir."
+
 
