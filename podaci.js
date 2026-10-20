@@ -89,7 +89,7 @@ const FOTOGRAFIJE =[ { file: "foto/1787431388005.jpg", utakmica: "DINAMO - HAJDU
 ];
 
 var DETALJI = {
-  "slaven belupo - dinamo": "10. kolo HNL. Stadion Ivan Kušek Apaš, Koprivnica."
+  "SLAVEN BELUPO - DINAMO": "10. kolo HNL. Stadion Ivan Kušek Apaš, Koprivnica."
 };
 
 
