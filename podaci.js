@@ -92,6 +92,7 @@ const FOTOGRAFIJE =[ { file: "foto/1787431388005.jpg", utakmica: "DINAMO - HAJDU
   { file: "foto/2026-10-22-dinamo-nec-01-meow.jpg", utakmica: "DINAMO - NEC", datum: "2026-10-22" },
   { file: "foto/2026-10-22-dinamo-nec-01-s3le.jpg", utakmica: "DINAMO - NEC", datum: "2026-10-22" },
   { file: "foto/2026-10-22-dinamo-nec-01-pzhe.jpg", utakmica: "DINAMO - NEC", datum: "2026-10-22" },
+  { file: "foto/2026-10-22-dinamo-nec-01-o77d.jpg", utakmica: "DINAMO - NEC", datum: "2026-10-22" },
 ];
 
 var DETALJI = {
