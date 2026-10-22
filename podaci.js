@@ -100,6 +100,7 @@ var DETALJI = {
   "DINAMO - ANDERLECHT": "2. pretkolo UEFA Europa lige. Stadion Maksimir.",
   "HAJDUK - DINAMO": "9. kolo HNL. Stadion Poljud.",
   "Vukovar - Dinamo (kup)": "Osmina finala kupa. Stadion Borovo naselje.",
+  "DINAMO - NEC": "3. pretkolo UEFA Europa lige. Stadion Maksimir.",
   };
 
 
