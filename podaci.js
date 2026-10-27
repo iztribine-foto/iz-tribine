@@ -101,6 +101,7 @@ const FOTOGRAFIJE =[ { file: "foto/1787431388005.jpg", utakmica: "DINAMO - HAJDU
   { file: "foto/2026-10-27-dinamo-rijeka-06-l4jq.jpg", utakmica: "DINAMO - RIJEKA", datum: "2026-10-27" },
   { file: "foto/2026-10-27-dinamo-rijeka-01-pdbn.jpg", utakmica: "DINAMO - RIJEKA", datum: "2026-10-27" },
   { file: "foto/2026-10-27-dinamo-rijeka-01-t9tl.jpg", utakmica: "DINAMO - RIJEKA", datum: "2026-10-27" },
+  { file: "foto/2026-10-27-dinamo-rijeka-01-1w2v.jpg", utakmica: "DINAMO - RIJEKA", datum: "2026-10-27" },
 ];
 
 var DETALJI = {
