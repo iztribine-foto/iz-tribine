@@ -953,6 +953,12 @@ if (io) io.observe(stat3); else stat3.classList.add("in");
       cap.firstChild.textContent = name;
       cap.lastChild.textContent = brojFoto(a.photos.length) + (first.datum ? " · " + String(first.datum).slice(0, 4) : "");
       el.appendChild(cap);
+     var dm = String(first.datum || "").split("-"); // chip datum (obriši ova 5 redova za staro)
+        if (dm.length === 3) {
+          var chip = document.createElement("span"); chip.className = "chip";
+          chip.textContent = parseInt(dm[2], 10) + "." + parseInt(dm[1], 10) + ".";
+          el.appendChild(chip);
+        }
       albumsEl.appendChild(el);
       reveal(el, idx);
     });
