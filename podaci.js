@@ -93,6 +93,12 @@ const FOTOGRAFIJE =[ { file: "foto/1787431388005.jpg", utakmica: "DINAMO - HAJDU
   { file: "foto/2026-10-22-dinamo-nec-01-s3le.jpg", utakmica: "DINAMO - NEC", datum: "2026-10-22" },
   { file: "foto/2026-10-22-dinamo-nec-01-pzhe.jpg", utakmica: "DINAMO - NEC", datum: "2026-10-22" },
   { file: "foto/2026-10-22-dinamo-nec-01-o77d.jpg", utakmica: "DINAMO - NEC", datum: "2026-10-22" },
+  { file: "foto/2026-10-27-dinamo-rijeka-01-l4jq.jpg", utakmica: "DINAMO - RIJEKA", datum: "2026-10-27" },
+  { file: "foto/2026-10-27-dinamo-rijeka-02-l4jq.jpg", utakmica: "DINAMO - RIJEKA", datum: "2026-10-27" },
+  { file: "foto/2026-10-27-dinamo-rijeka-03-l4jq.jpg", utakmica: "DINAMO - RIJEKA", datum: "2026-10-27" },
+  { file: "foto/2026-10-27-dinamo-rijeka-04-l4jq.jpg", utakmica: "DINAMO - RIJEKA", datum: "2026-10-27" },
+  { file: "foto/2026-10-27-dinamo-rijeka-05-l4jq.jpg", utakmica: "DINAMO - RIJEKA", datum: "2026-10-27" },
+  { file: "foto/2026-10-27-dinamo-rijeka-06-l4jq.jpg", utakmica: "DINAMO - RIJEKA", datum: "2026-10-27" },
 ];
 
 var DETALJI = {
