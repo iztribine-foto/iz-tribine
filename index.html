@@ -1271,7 +1271,14 @@ var GRUPA = {
       cap.innerHTML = "<strong></strong><span></span>";
       cap.firstChild.textContent = name;
       cap.lastChild.textContent = broj(a.n) + (a.first.datum ? " · " + String(a.first.datum).slice(0, 4) : "");
-      el.appendChild(cap); box.appendChild(el);
+      el.appendChild(cap);
+      var dm = String(a.first.datum || "").split("-"); // chip datum (obriši ova 6 redova za staro)
+      if (dm.length === 3) {
+        var chip = document.createElement("span"); chip.className = "chip";
+        chip.textContent = parseInt(dm[2], 10) + "." + parseInt(dm[1], 10) + ".";
+        el.appendChild(chip);
+      }
+      box.appendChild(el);
     });
   }
 
