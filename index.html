@@ -1660,6 +1660,16 @@ if (scrollTarget) setTimeout(function () {
   items.forEach(function (el) {
     el.addEventListener('click', function () { pomakni(el); });
   });
+  var zadnjiKlik = 0;
+  items.forEach(function (el) {
+    el.addEventListener('click', function () { zadnjiKlik = Date.now(); });
+  });
+  window.addEventListener('scroll', function () {
+    if (window.scrollY < 80 && Date.now() - zadnjiKlik > 1500) {
+      pill.style.opacity = 0;
+      items.forEach(function (i) { i.classList.remove('act'); });
+    }
+  }, { passive: true });
 })();
   </script>
   
