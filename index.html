@@ -1699,13 +1699,10 @@ if (scrollTarget) setTimeout(function () {
   }
   function skeniraj() {
     document.querySelectorAll('#galerija h2, #galerija .sub, #o-meni h2, #o-meni p, footer .wrap').forEach(dodaj);
-    document.querySelectorAll('#albums > *, #grid > *').forEach(dodaj);
+    
   }
   skeniraj();
-  ['albums', 'grid'].forEach(function (id) {
-    var n = document.getElementById(id);
-    if (n) new MutationObserver(skeniraj).observe(n, { childList: true });
-  });
+  
 })();
   </script>
   
