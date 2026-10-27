@@ -78,6 +78,17 @@ button { font: inherit; color: inherit; }
 .site-header nav { display: flex; gap: 19px; }
 .site-header nav a { color: var(--muted); font-size: .98rem; padding: 6px 0; white-space: nowrap; }
 .site-header nav a:hover { color: var(--text); }
+.site-header nav { position: relative; }
+.site-header nav a, .site-header nav .nav-btn { position: relative; z-index: 1; transition: color .2s; }
+.site-header nav a.act, .site-header nav .nav-btn.act { color: var(--text); }
+.nav-pill {
+  position: absolute; top: 0; height: 100%; left: 0; width: 0; opacity: 0;
+  border-radius: 8px; z-index: 0; pointer-events: none;
+  background: linear-gradient(145deg, rgba(47,111,237,.45), rgba(47,111,237,.2));
+  border: 1px solid rgba(79,142,247,.6);
+  box-shadow: 0 0 16px rgba(47,111,237,.4);
+  transition: left .4s cubic-bezier(.3,1.4,.5,1), width .4s cubic-bezier(.3,1.4,.5,1), opacity .2s;
+}
 
 /* ---------- hero ---------- */
 .hero {
@@ -518,6 +529,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
   <header class="site-header">
   <a class="logo" href="#top" aria-label="Iz Tribine — početak"><span class="logo-mark">D</span><span>IZ<b>TRIBINE</b></span></a>
   <nav aria-label="Glavna navigacija">
+  <span class="nav-pill" id="navPill"></span>
     <a href="#galerija">Galerija</a>
     <a href="#o-meni">O nama</a>
     <button type="button" class="nav-btn" id="navGrupa" aria-haspopup="dialog">O grupi</button>
@@ -1632,5 +1644,24 @@ if (scrollTarget) setTimeout(function () {
   sheet.addEventListener("touchcancel", end);
 })();
   </script>
+  <script>
+(function () {
+  var nav = document.querySelector('.site-header nav');
+  var pill = document.getElementById('navPill');
+  if (!nav || !pill) return;
+  var items = nav.querySelectorAll('a, .nav-btn');
+  function pomakni(el) {
+    pill.style.left = (el.offsetLeft - 9) + 'px';
+    pill.style.width = (el.offsetWidth + 18) + 'px';
+    pill.style.opacity = 1;
+    items.forEach(function (i) { i.classList.remove('act'); });
+    el.classList.add('act');
+  }
+  items.forEach(function (el) {
+    el.addEventListener('click', function () { pomakni(el); });
+  });
+})();
+  </script>
+  
 </body>
 </html>
