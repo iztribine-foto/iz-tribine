@@ -477,6 +477,9 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
   border-color: rgba(79, 142, 247, .8) !important;
   box-shadow: 0 12px 40px rgba(0, 0, 0, .6), 0 0 25px rgba(47, 110, 237, .35) !important;
 }
+.rv { opacity: 0; transform: translateY(28px) scale(.97); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1); }
+.rv.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .rv { opacity: 1; transform: none; transition: none; } }
 </style>
 </head>
 <body>
@@ -1670,6 +1673,39 @@ if (scrollTarget) setTimeout(function () {
       items.forEach(function (i) { i.classList.remove('act'); });
     }
   }, { passive: true });
+})();
+  </script>
+  <script>
+(function () {
+  if (!('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      var el = e.target;
+      io.unobserve(el);
+      el.classList.add('in');
+      setTimeout(function () {
+        el.classList.remove('rv', 'in');
+        el.style.transitionDelay = '';
+      }, 1200);
+    });
+  }, { threshold: 0.12 });
+  function dodaj(el, i) {
+    if (el.__rv) return;
+    el.__rv = true;
+    el.classList.add('rv');
+    el.style.transitionDelay = ((i % 4) * 90) + 'ms';
+    io.observe(el);
+  }
+  function skeniraj() {
+    document.querySelectorAll('#galerija h2, #galerija .sub, #o-meni h2, #o-meni p, footer .wrap').forEach(dodaj);
+    document.querySelectorAll('#albums > *, #grid > *').forEach(dodaj);
+  }
+  skeniraj();
+  ['albums', 'grid'].forEach(function (id) {
+    var n = document.getElementById(id);
+    if (n) new MutationObserver(skeniraj).observe(n, { childList: true });
+  });
 })();
   </script>
   
