@@ -487,6 +487,26 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
 .album .cap strong { font-size: .68rem; letter-spacing: .01em; line-height: 1.15; }
 .album .cap span { font-size: .66rem; margin-top: 2px; } .album .chip { position: absolute; top: 8px; left: 8px; z-index: 2; padding: 3px 9px; border-radius: 20px; font-family: var(--font-ultras); letter-spacing: .06em; font-size: .72rem; background: rgba(7,11,20,.7); border: 1px solid rgba(79,142,247,.5); color: var(--text); }
 /* === KRAJ STAKLO KARTICA === */
+
+  /* ikonice alata */
+.alati { display: flex; gap: 12px; margin-top: 22px; flex-wrap: wrap; }
+.alat {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  width: 96px; padding: 14px 8px; border-radius: 12px;
+  background: rgba(13, 20, 36, .35);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(79, 142, 247, .3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, .4);
+  transition: border-color .3s ease, transform .3s ease;
+}
+.alat:hover { border-color: rgba(79, 142, 247, .8); transform: translateY(-3px); }
+.alat svg { width: 30px; height: 30px; stroke: var(--blue); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.alat b {
+  width: 30px; height: 30px; display: grid; place-items: center;
+  border: 1.8px solid var(--blue); border-radius: 7px;
+  color: var(--blue); font-family: var(--font-ultras); font-size: .95rem; line-height: 1;
+}
+.alat span { font-size: .7rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
 </style>
 </head>
 <body>
@@ -607,7 +627,14 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
       <h2 id="om-h">OPIS</h2>
       <p>Fotografije iz kuta objektiva. Svaki kadar dodatno obrađujemo s fokusom na boje i kontrast, koreografije, bakljade, dajući fotografijama poseban vizualni pečat i energiju.</p>
       <p>Bad Blue Boysi su jedna od najprepoznatljivijih navijačkih grupa u Europi, poznata po atraktivnim koreografijama i bakljadama na mnogobrojnim stadionima. Upravo to ih čini savršenim motivom za fenomenalne fotografije.</p>
-<span style="color: #0056b3; font-weight: bold;">Obrada u Adobe Lightroomu i Photoshopu</span>
+<div class="alati">
+  <div class="alat">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>
+    <span>Fotografija</span>
+  </div>
+  <div class="alat"><b>Lr</b><span>Lightroom</span></div>
+  <div class="alat"><b>Ps</b><span>Photoshop</span></div>
+</div>
       
     </div>
   </section>
