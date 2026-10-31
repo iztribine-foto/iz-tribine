@@ -109,6 +109,7 @@ const FOTOGRAFIJE =[ { file: "foto/1787431388005.jpg", utakmica: "DINAMO - HAJDU
   { file: "foto/2026-10-31-rudes-dinamo-05-v56s.jpg", utakmica: "RUDEŠ - DINAMO", datum: "2026-10-31" },
   { file: "foto/2026-10-31-rudes-dinamo-06-v56s.jpg", utakmica: "RUDEŠ - DINAMO", datum: "2026-10-31" },
   { file: "foto/2026-10-31-rudes-dinamo-07-v56s.jpg", utakmica: "RUDEŠ - DINAMO", datum: "2026-10-31" },
+  { file: "foto/2026-10-31-rudes-dinamo-01-00vm.jpg", utakmica: "RUDEŠ - DINAMO", datum: "2026-10-31" },
 ];
 
 var DETALJI = {
