@@ -120,6 +120,7 @@ var DETALJI = {
   "Vukovar - Dinamo (kup)": "Osmina finala kupa. Stadion Borovo naselje.",
   "DINAMO - NEC": "3. pretkolo UEFA Europa lige. Stadion Maksimir.",
   "DINAMO - RIJEKA": "11. kolo HNL. Stadion Maksimir, Zagreb.",
+  "RUDEŠ - DINAMO": "12. kolo HNL. Stadion Velika Gorica.",
   };
 
 
