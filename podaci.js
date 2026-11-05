@@ -111,6 +111,10 @@ const FOTOGRAFIJE =[ { file: "foto/1787431388005.jpg", utakmica: "DINAMO - HAJDU
   { file: "foto/2026-10-31-rudes-dinamo-07-v56s.jpg", utakmica: "RUDEŠ - DINAMO", datum: "2026-10-31" },
   { file: "foto/2026-10-31-rudes-dinamo-01-00vm.jpg", utakmica: "RUDEŠ - DINAMO", datum: "2026-10-31" },
   { file: "foto/2026-10-31-rudes-dinamo-01-6p5c.jpg", utakmica: "RUDEŠ - DINAMO", datum: "2026-10-31" },
+  { file: "foto/2026-11-05-sunderland-dinamo-01-gkzs.jpg", utakmica: "SUNDERLAND - DINAMO", datum: "2026-11-05" },
+  { file: "foto/2026-11-05-sunderland-dinamo-02-gkzs.jpg", utakmica: "SUNDERLAND - DINAMO", datum: "2026-11-05" },
+  { file: "foto/2026-11-05-sunderland-dinamo-03-gkzs.jpg", utakmica: "SUNDERLAND - DINAMO", datum: "2026-11-05" },
+  { file: "foto/2026-11-05-sunderland-dinamo-04-gkzs.jpg", utakmica: "SUNDERLAND - DINAMO", datum: "2026-11-05" },
 ];
 
 var DETALJI = {
