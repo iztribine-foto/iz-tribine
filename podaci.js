@@ -117,6 +117,7 @@ const FOTOGRAFIJE =[ { file: "foto/1787431388005.jpg", utakmica: "DINAMO - HAJDU
   { file: "foto/2026-11-05-sunderland-dinamo-04-gkzs.jpg", utakmica: "SUNDERLAND - DINAMO", datum: "2026-11-05" },
   { file: "foto/2026-11-05-sunderland-dinamo-01-oqfi.jpg", utakmica: "SUNDERLAND - DINAMO", datum: "2026-11-05" },
   { file: "foto/2026-11-05-sunderland-dinamo-01-fv41.jpg", utakmica: "SUNDERLAND - DINAMO", datum: "2026-11-05" },
+  { file: "foto/2026-11-05-sunderland-dinamo-01-xtya.jpg", utakmica: "SUNDERLAND - DINAMO", datum: "2026-11-05" },
 ];
 
 var DETALJI = {
