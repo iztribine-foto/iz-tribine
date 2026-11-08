@@ -124,6 +124,7 @@ const FOTOGRAFIJE =[ { file: "foto/1787431388005.jpg", utakmica: "DINAMO - HAJDU
   { file: "foto/2026-11-08-varazdin-dinamo-04-8sob.jpg", utakmica: "VARAŽDIN - DINAMO", datum: "2026-11-08" },
   { file: "foto/2026-11-08-varazdin-dinamo-05-8sob.jpg", utakmica: "VARAŽDIN - DINAMO", datum: "2026-11-08" },
   { file: "foto/2026-11-08-varazdin-dinamo-01-enfy.jpg", utakmica: "VARAŽDIN - DINAMO", datum: "2026-11-08" },
+  { file: "foto/2026-11-08-varazdin-dinamo-01-w078.jpg", utakmica: "VARAŽDIN - DINAMO", datum: "2026-11-08" },
 ];
 
 var DETALJI = {
