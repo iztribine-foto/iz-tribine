@@ -136,6 +136,7 @@ var DETALJI = {
   "DINAMO - RIJEKA": "11. kolo HNL. Stadion Maksimir, Zagreb.",
   "RUDEŠ - DINAMO": "12. kolo HNL. Stadion Velika Gorica.",
   "SUNDERLAND - DINAMO": " 4. kolo UEFA Europa liga. Stadion Stadium of Light.",
+  "VARAŽDIN - DINAMO": "13. Kolo HNL. Gradski Stadion Varaždin.",
   };
 
 
