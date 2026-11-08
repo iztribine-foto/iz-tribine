@@ -118,6 +118,11 @@ const FOTOGRAFIJE =[ { file: "foto/1787431388005.jpg", utakmica: "DINAMO - HAJDU
   { file: "foto/2026-11-05-sunderland-dinamo-01-oqfi.jpg", utakmica: "SUNDERLAND - DINAMO", datum: "2026-11-05" },
   { file: "foto/2026-11-05-sunderland-dinamo-01-fv41.jpg", utakmica: "SUNDERLAND - DINAMO", datum: "2026-11-05" },
   { file: "foto/2026-11-05-sunderland-dinamo-01-xtya.jpg", utakmica: "SUNDERLAND - DINAMO", datum: "2026-11-05" },
+  { file: "foto/2026-11-08-varazdin-dinamo-01-8sob.jpg", utakmica: "VARAŽDIN - DINAMO", datum: "2026-11-08" },
+  { file: "foto/2026-11-08-varazdin-dinamo-02-8sob.jpg", utakmica: "VARAŽDIN - DINAMO", datum: "2026-11-08" },
+  { file: "foto/2026-11-08-varazdin-dinamo-03-8sob.jpg", utakmica: "VARAŽDIN - DINAMO", datum: "2026-11-08" },
+  { file: "foto/2026-11-08-varazdin-dinamo-04-8sob.jpg", utakmica: "VARAŽDIN - DINAMO", datum: "2026-11-08" },
+  { file: "foto/2026-11-08-varazdin-dinamo-05-8sob.jpg", utakmica: "VARAŽDIN - DINAMO", datum: "2026-11-08" },
 ];
 
 var DETALJI = {
