@@ -124,7 +124,16 @@ const FOTOGRAFIJE =[ { file: "foto/1787431388005.jpg", utakmica: "DINAMO - HAJDU
   { file: "foto/2026-11-08-varazdin-dinamo-04-8sob.jpg", utakmica: "VARAŽDIN - DINAMO", datum: "2026-11-08" },
   { file: "foto/2026-11-08-varazdin-dinamo-05-8sob.jpg", utakmica: "VARAŽDIN - DINAMO", datum: "2026-11-08" },
   { file: "foto/2026-11-08-varazdin-dinamo-01-enfy.jpg", utakmica: "VARAŽDIN - DINAMO", datum: "2026-11-08" },
-  
+  { file: "foto/2026-11-22-dinamo-istra-01-u7ch.jpg", utakmica: "DINAMO - ISTRA", datum: "2026-11-22" },
+  { file: "foto/2026-11-22-dinamo-istra-02-u7ch.jpg", utakmica: "DINAMO - ISTRA", datum: "2026-11-22" },
+  { file: "foto/2026-11-22-dinamo-istra-03-u7ch.jpg", utakmica: "DINAMO - ISTRA", datum: "2026-11-22" },
+  { file: "foto/2026-11-22-dinamo-istra-04-u7ch.jpg", utakmica: "DINAMO - ISTRA", datum: "2026-11-22" },
+  { file: "foto/2026-11-22-dinamo-istra-05-u7ch.jpg", utakmica: "DINAMO - ISTRA", datum: "2026-11-22" },
+  { file: "foto/2026-11-22-dinamo-istra-06-u7ch.jpg", utakmica: "DINAMO - ISTRA", datum: "2026-11-22" },
+  { file: "foto/2026-11-22-dinamo-istra-07-u7ch.jpg", utakmica: "DINAMO - ISTRA", datum: "2026-11-22" },
+  { file: "foto/2026-11-22-dinamo-istra-08-u7ch.jpg", utakmica: "DINAMO - ISTRA", datum: "2026-11-22" },
+  { file: "foto/2026-11-22-dinamo-istra-09-u7ch.jpg", utakmica: "DINAMO - ISTRA", datum: "2026-11-22" },
+  { file: "foto/2026-11-22-dinamo-istra-10-u7ch.jpg", utakmica: "DINAMO - ISTRA", datum: "2026-11-22" },
 ];
 
 var DETALJI = {
