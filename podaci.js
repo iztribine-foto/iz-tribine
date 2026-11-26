@@ -141,6 +141,7 @@ const FOTOGRAFIJE =[ { file: "foto/1787431388005.jpg", utakmica: "DINAMO - HAJDU
   { file: "foto/2026-11-26-dinamo-bayer-leverkusen-03-ka1w.jpg", utakmica: "DINAMO - BAYER LEVERKUSEN", datum: "2026-11-26" },
   { file: "foto/2026-11-26-dinamo-bayer-leverkusen-04-ka1w.jpg", utakmica: "DINAMO - BAYER LEVERKUSEN", datum: "2026-11-26" },
   { file: "foto/2026-11-26-dinamo-bayer-leverkusen-05-ka1w.jpg", utakmica: "DINAMO - BAYER LEVERKUSEN", datum: "2026-11-26" },
+  { file: "foto/2026-11-26-dinamo-bayer-leverkusen-01-6c2k.jpg", utakmica: "DINAMO - BAYER LEVERKUSEN", datum: "2026-11-26" },
 ];
 
 var DETALJI = {
