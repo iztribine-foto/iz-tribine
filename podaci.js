@@ -136,6 +136,11 @@ const FOTOGRAFIJE =[ { file: "foto/1787431388005.jpg", utakmica: "DINAMO - HAJDU
   { file: "foto/2026-11-22-dinamo-istra-10-u7ch.jpg", utakmica: "DINAMO - ISTRA", datum: "2026-11-22" },
   { file: "foto/2026-11-22-dinamo-istra-01-xqvh.jpg", utakmica: "DINAMO - ISTRA", datum: "2026-11-22" },
   { file: "foto/2026-11-22-dinamo-istra-02-xqvh.jpg", utakmica: "DINAMO - ISTRA", datum: "2026-11-22" },
+  { file: "foto/2026-11-26-dinamo-bayer-leverkusen-01-ka1w.jpg", utakmica: "DINAMO - BAYER LEVERKUSEN", datum: "2026-11-26" },
+  { file: "foto/2026-11-26-dinamo-bayer-leverkusen-02-ka1w.jpg", utakmica: "DINAMO - BAYER LEVERKUSEN", datum: "2026-11-26" },
+  { file: "foto/2026-11-26-dinamo-bayer-leverkusen-03-ka1w.jpg", utakmica: "DINAMO - BAYER LEVERKUSEN", datum: "2026-11-26" },
+  { file: "foto/2026-11-26-dinamo-bayer-leverkusen-04-ka1w.jpg", utakmica: "DINAMO - BAYER LEVERKUSEN", datum: "2026-11-26" },
+  { file: "foto/2026-11-26-dinamo-bayer-leverkusen-05-ka1w.jpg", utakmica: "DINAMO - BAYER LEVERKUSEN", datum: "2026-11-26" },
 ];
 
 var DETALJI = {
